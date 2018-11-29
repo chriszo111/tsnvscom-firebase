@@ -1,0 +1,10 @@
+footer {
+    opacity: 1;
+    z-index: 1050;
+}
+
+.copyright-list {
+    color: #aaa;
+    font-size: 0.8rem;
+    margin-bottom: 0;
+}

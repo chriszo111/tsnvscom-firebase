@@ -1,0 +1,7 @@
+.center-content {
+    margin-top: 10em;
+}
+
+app-navbar {
+    z-index: 1050;
+}

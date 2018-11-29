@@ -1,0 +1,28 @@
+<main role="main" class="inner cover center-content">
+    <div class="fullscreen-bg">
+      <video autoplay loop id="aboutVideo" class="fullscreen-bg__video" muted>
+        <source [src]="bgVideo | async" type="video/mp4">
+      </video>
+    </div>
+    
+      <h1 class="cover-heading">About <span style="color:lightgray">tsnvs.com</span></h1>
+      <p class="lead">
+        Tensation Virtual Services, short tsnvs.com, is a small network that privately hosts servers for communication, 
+        gaming and web. If you think that you need help from us, feel free to contact us.
+      </p>
+      <p class="lead">
+        <a href="https://www.twitter.com/chrisvansmith" class="btn btn-lg btn-secondary" placement="right" ngbTooltip="Twitter">@chrisvansmith</a>
+      </p>
+      <p class="lead">
+          
+          <a href="ts3://tsnvs.com" class="btn btn-lg btn-secondary" placement="right" ngbTooltip="Connect to Teamspeak">
+            <fa-icon [icon]="['fab','teamspeak']"></fa-icon> tsnvs.com
+          </a>
+        </p>
+      
+      <div class="row">
+          <p class="col-md-12 fixed-bottom" style="opacity: 0.4; z-index:1100; bottom: 2rem;">
+            Background video by &copy; <a href="https://www.youtube.com/watch?v=SSvMB5WwCFY" target="_blank">AA VFX</a>&nbsp;<fa-icon [icon]="['fas','external-link-alt']" size="xs"></fa-icon>
+          </p>
+      </div>
+</main>

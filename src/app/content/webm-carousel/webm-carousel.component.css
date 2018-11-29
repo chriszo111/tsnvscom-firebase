@@ -1,0 +1,54 @@
+.center-content {
+    margin-top: 10em;
+}
+
+/* https://slicejack.com/fullscreen-html5-video-background-css/ */
+
+video {
+    opacity: 0.8;
+}
+
+.fullscreen-bg {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -100;
+  }
+  
+  .fullscreen-bg__video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  @media (min-aspect-ratio: 16/9) {
+    .fullscreen-bg__video {
+      height: 300%;
+      top: -100%;
+    }
+  }
+  
+  @media (max-aspect-ratio: 16/9) {
+    .fullscreen-bg__video {
+      width: 300%;
+      left: -100%;
+    }
+  }
+
+/* iphone 6+, 6s+, 7+, 8+ */
+@media only screen and (min-width: 414px) and (max-width: 767px) { }
+
+@media (max-width: 767px) {
+  .fullscreen-bg {
+    background: url('/src/assets/img/videoframe.jpg') center center / cover no-repeat;
+  }
+  
+  .fullscreen-bg__video {
+    display: none;
+  }
+}

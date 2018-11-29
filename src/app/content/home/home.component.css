@@ -1,0 +1,59 @@
+.center-content {
+    margin-top: 10em;
+}
+
+ngb-carousel {
+    top: 0;
+    left: 0;
+    width: 100%;
+    bottom: 2rem;
+    z-index: 0;
+
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+ngb-carousel:hover {
+    box-shadow: 0px 0px 8px 2px rgb(207, 207, 207, 0.5);
+}
+
+ngb-carousel:focus {
+    outline: none;
+    border: 0;
+}
+
+.carousel-caption {
+    top: 50%;
+    transform: translateY(-50%);
+    bottom: initial;
+}
+
+.carousel-indicators {
+    z-index: 1000;
+}
+
+img {
+    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.nav-bg {
+    height: 6rem;
+    width: 100%;
+  
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    z-index: 1040;
+  
+   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000100+0,ffffff+100&1+0,0+100 */
+    background: -moz-linear-gradient(top, rgba(0,1,0,1) 0%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(0,1,0,1) 0%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgba(0,1,0,1) 0%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000100', endColorstr='#00ffffff',GradientType=0 ); /* IE6-9 */
+}
+

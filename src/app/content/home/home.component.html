@@ -1,0 +1,24 @@
+<particles [style]="particleStyle" [width]="particleWidth" [height]="particleHeight" [params]="particleParams"></particles>
+
+<div class="nav-bg"></div>
+
+<main role="main" class="inner cover center-content">
+
+    <ngb-carousel *ngIf="figures" class="position-absolute home-carousel">
+            <ng-template ngbSlide *ngFor="let figure of figures">
+              <img [src]="figure.img.src" alt="figure.img.alt">
+              <div class="carousel-caption">
+                <h3>
+                    <fa-icon [icon]="[figure.icon.prefix, figure.icon.name]" animation="pulse"></fa-icon> 
+                    {{figure.title}}
+                </h3>
+                <p>{{figure.caption}}</p>
+              </div>
+            </ng-template>
+    </ngb-carousel>
+
+    <div class="position-absolute">
+        <fa-icon [icon]="['fas','angle-down']"></fa-icon>
+    </div>
+
+</main>
