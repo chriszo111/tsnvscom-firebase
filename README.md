@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/chriszo111/tsnvscom-firebase.svg?branch=master)](https://travis-ci.org/chriszo111/tsnvscom-firebase)
+
 # Webapp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.3.
