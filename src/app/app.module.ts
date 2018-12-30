@@ -28,9 +28,9 @@ import { WebmCarouselComponent } from './content/webm-carousel/webm-carousel.com
 import { ContactComponent } from './help/contact/contact.component';
 
 // Add all solid icons to library
-library.add(faGamepad,faServer,faHeadset,faArrowDown,faExternalLinkAlt);
+library.add(faGamepad, faServer, faHeadset, faArrowDown, faExternalLinkAlt);
 // Add all brand icons to library
-library.add(faFacebook,faTeamspeak,faTwitch,faTwitter,faSteam);
+library.add(faFacebook, faTeamspeak, faTwitch, faTwitter, faSteam);
 
 @NgModule({
   declarations: [
