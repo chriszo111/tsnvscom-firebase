@@ -4,19 +4,17 @@
 
     <ngb-carousel *ngIf="figures" class="position-absolute home-carousel">
             <ng-template ngbSlide *ngFor="let figure of figures">
-              <img [src]="figure.img.src" alt="figure.img.alt">
+              <img [src]="figure.img.src" alt="figure.img.alt" [@fadeIn]="fadeIn">
               <div class="carousel-caption">
-                <h1>
+                <h1 [@fadeIn]="fadeIn">
                     <fa-icon [icon]="[figure.icon.prefix, figure.icon.name]" animation="pulse"></fa-icon> 
                     {{figure.title}}
                 </h1>
-                <p>{{figure.caption}}</p>
+                <p [@fadeIn]="fadeIn">{{figure.caption}} <fa-icon [icon]="['fas','arrow-down']"></fa-icon></p>
               </div>
             </ng-template>
     </ngb-carousel>
 
-    <div class="position-absolute">
-        <fa-icon [icon]="['fas','arrow-down']"></fa-icon>
-    </div>
+    
 
 </main>
