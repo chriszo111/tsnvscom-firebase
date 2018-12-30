@@ -9,7 +9,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
-import { AngularFireFunctionsModule } from '@angular/fire/functions'
+import { AngularFireFunctionsModule } from '@angular/fire/functions';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -17,7 +17,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faGamepad, faServer, faHeadset, faArrowDown, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { faTwitter, faTwitch, faTeamspeak, faSteam, faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { ParticlesModule } from 'angular-particle';
-import { TimeAgoPipe } from 'time-ago-pipe'
+import { TimeAgoPipe } from 'time-ago-pipe';
 
 import { AppNavbarComponent } from './app-navbar/app-navbar.component';
 import { AppFooterComponent } from './app-footer/app-footer.component';

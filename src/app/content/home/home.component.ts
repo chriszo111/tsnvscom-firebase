@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   public innerHeight: any;
 
   constructor(private titleService: Title,
-              private ngbCarouselConfig: NgbCarouselConfig) { 
+              private ngbCarouselConfig: NgbCarouselConfig) {
                 ngbCarouselConfig.showNavigationArrows = false;
                 ngbCarouselConfig.interval = 15000;
               }
