@@ -1,5 +1,7 @@
+
+
 .center-content {
-    margin-top: 10em;
+    margin-top: 5em;
 }
 
 ngb-carousel {
@@ -24,7 +26,7 @@ ngb-carousel:focus {
 }
 
 .carousel-caption {
-    top: 50%;
+    top: 40%;
     transform: translateY(-50%);
     bottom: initial;
 }
