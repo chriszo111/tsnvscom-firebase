@@ -1,9 +1,15 @@
 <footer class="d-flex bd-highlight fixed-bottom" style="background-color: rgba(0,0,0,0.4);">
-      <div class="p-2 flex-fill bd-highlight text-left">
-        Copyright &copy; 2018 <a routerLink="/home">tsnvs.com</a>. 
-        All rights reserved.
-      </div>
-      <div class="p-2 flex-fill bd-highlight text-right">
-        Website by <a href="https://www.twitter.com/chrisvansmith">@chriszo111</a><br />
+  <div class="p-2 flex-fill bd-highlight text-left">
+    Copyright &copy; 2018 <a routerLink="/home">tsnvs.com</a>. 
+    All rights reserved.
+  </div>
+  <div class="p-2 flex-fill bd-highlight text-right">
+    <div class="chatbox" [hidden]="!chat.visible">
+
     </div>
+        <button class="chatbox-button" (click)="toggleChat()"><fa-icon [icon]="['far', 'comment-alt']"></fa-icon> {{chat.button.text}}</button>
+  </div>
+  <div class="p-2 flex-fill bd-highlight text-right">
+    Website by <a href="https://www.twitter.com/chrisvansmith">@chriszo111</a><br />
+  </div>
 </footer>

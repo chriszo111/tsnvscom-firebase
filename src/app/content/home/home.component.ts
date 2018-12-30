@@ -1,17 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { TimeAgoPipe } from 'time-ago-pipe';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
+import { trigger, transition, useAnimation } from '@angular/animations';
+import { bounce, fadeIn } from 'ng-animate';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
+  animations: [
+    trigger('fadeIn', [
+      transition('* => *', useAnimation(fadeIn)),
+    ])
+  ],
   providers: [NgbCarouselConfig]
 })
 export class HomeComponent implements OnInit {
 
   figures: any = [];
+  fadeIn: any;
   public innerWidth: any;
   public innerHeight: any;
 
@@ -23,8 +30,10 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.titleService.setTitle('Home - Tensation Virtual Services - tsnvs.com');
+
     this.innerWidth = window.innerWidth;
     this.innerHeight = window.innerHeight;
+
     this.createFigures();
   }
 
