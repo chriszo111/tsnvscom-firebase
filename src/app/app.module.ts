@@ -24,7 +24,6 @@ import { AppFooterComponent } from './app-footer/app-footer.component';
 import { AboutComponent } from './content/about/about.component';
 import { PageNotFoundComponent } from './errors/page-not-found/page-not-found.component';
 import { HomeComponent } from './content/home/home.component';
-import { WebmCarouselComponent } from './content/webm-carousel/webm-carousel.component';
 import { ContactComponent } from './help/contact/contact.component';
 
 // Add all solid icons to library
@@ -40,7 +39,6 @@ library.add(faFacebook, faTeamspeak, faTwitch, faTwitter, faSteam);
     AboutComponent,
     PageNotFoundComponent,
     HomeComponent,
-    WebmCarouselComponent,
     ContactComponent,
     TimeAgoPipe
   ],
