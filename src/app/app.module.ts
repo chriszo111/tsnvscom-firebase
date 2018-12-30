@@ -4,6 +4,7 @@ import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -44,6 +45,7 @@ library.add(faFacebook, faTeamspeak, faTwitch, faTwitter, faSteam);
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase, 'rebuilt-games'),
     AngularFirestoreModule,
     AngularFireStorageModule,
