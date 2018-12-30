@@ -10,7 +10,7 @@ export class WebmCarouselComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    let video = document.getElementById("startVideo") as HTMLMediaElement;
+    const video = document.getElementById('startVideo') as HTMLMediaElement;
     video.muted = true;
   }
 
