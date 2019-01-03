@@ -1,8 +1,8 @@
-<button type="button" class="btn btn-sm btn-outline-primary my-2 my-sm-0" (click)="signInWithFacebook()" *ngIf="!authService.isLoggedIn()">
+<button type="button" class="btn btn-sm btn-outline-primary my-2 my-sm-0" (click)="signInWithFacebook()" *ngIf="!isLoggedIn()">
   <fa-icon [icon]="['fab', 'facebook']"></fa-icon>
     Login
 </button>
 
-<button type="button" class="btn btn-sm btn-outline-danger my-2 my-sm-0" (click)="authService.logout()" *ngIf="authService.isLoggedIn()">
+<button type="button" class="btn btn-sm btn-outline-danger my-2 my-sm-0" (click)="logout()" *ngIf="isLoggedIn()">
   Logout
 </button>

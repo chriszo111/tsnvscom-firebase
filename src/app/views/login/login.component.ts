@@ -24,4 +24,16 @@ export class LoginComponent implements OnInit {
     .catch((err) => console.log(err));
   }
 
+  isLoggedIn(): boolean {
+    if (this.authService.isLoggedIn()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  logout() {
+    this.authService.logout();
+  }
+
 }

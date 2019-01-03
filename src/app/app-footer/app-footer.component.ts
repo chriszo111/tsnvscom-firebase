@@ -13,4 +13,12 @@ export class AppFooterComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  isLoggedIn(): boolean {
+    if (this.authService.isLoggedIn()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
