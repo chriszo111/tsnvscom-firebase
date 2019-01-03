@@ -82,7 +82,5 @@ export class HomeComponent implements OnInit {
       caption: 'Feel free to apply for a premium gaming server. We use highest bandwidth and hardware for minumum delays!',
       lastUpdate: '2018-10-18 12:20'
     });
-
-    console.log(this.figures);
   }
 }

@@ -111,7 +111,6 @@ export class ChatComponent implements OnInit {
       this.chat.button.text = 'Open Chat';
       this.chat.icon.prefix = 'far';
     }
-    console.log('toggleChat()');
   }
 
   onKeydown(event) {
