@@ -20,7 +20,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faCommentAlt } from '@fortawesome/free-regular-svg-icons';
-import { faGlobe, faGamepad, faServer, faHeadset, faArrowDown, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import { faTimes, faGlobe, faGamepad, faServer, faHeadset, faArrowDown, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { faTwitter, faTwitch, faTeamspeak, faSteam, faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { TimeAgoPipe } from 'time-ago-pipe';
 
@@ -37,7 +37,7 @@ import { DashboardComponent } from './views/dashboard/dashboard.component';
 // Add all regular icons to library
 library.add(faCommentAlt);
 // Add all solid icons to library
-library.add(faGlobe, faGamepad, faServer, faHeadset, faArrowDown, faExternalLinkAlt, faCommentAlt);
+library.add(faGlobe, faGamepad, faServer, faHeadset, faArrowDown, faExternalLinkAlt, faCommentAlt, faTimes);
 // Add all brand icons to library
 library.add(faFacebook, faTeamspeak, faTwitch, faTwitter, faSteam);
 
