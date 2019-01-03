@@ -22,7 +22,6 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { faCommentAlt } from '@fortawesome/free-regular-svg-icons';
 import { faGlobe, faGamepad, faServer, faHeadset, faArrowDown, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { faTwitter, faTwitch, faTeamspeak, faSteam, faFacebook } from '@fortawesome/free-brands-svg-icons';
-import { ParticlesModule } from 'angular-particle';
 import { TimeAgoPipe } from 'time-ago-pipe';
 
 import { AppNavbarComponent } from './app-navbar/app-navbar.component';
@@ -66,7 +65,6 @@ library.add(faFacebook, faTeamspeak, faTwitch, faTwitter, faSteam);
     NgbModule.forRoot(),
     FontAwesomeModule,
     AppRoutingModule,
-    ParticlesModule,
     FormsModule
   ],
   providers: [Title, AuthService, AuthGuard],
