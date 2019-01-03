@@ -1,3 +1,7 @@
+<div class="alert alert-primary" role="alert" [hidden]="!alert.active">
+  <strong>{{alert.title}}</strong> {{alert.message}}
+</div>
+
 <div>
   <div class="chatbox" [hidden]="!chat.visible" [style.height.px]="[chat.height]">
 

@@ -5,6 +5,13 @@ import { map } from 'rxjs/operators';
 import { v1 } from 'uuid';
 import { AuthService } from 'src/app/services/auth.service';
 
+interface Alert {
+  active: boolean;
+  type: string;
+  title: string;
+  message: string;
+}
+
 interface ChatWindow {
   visible: boolean;
   button: {
@@ -44,8 +51,9 @@ export class ChatComponent implements OnInit {
 
   chatVisible: Boolean = false;
   chat: ChatWindow;
+  alert: Alert;
 
-  messagesCol: any;
+  messagesCol: AngularFirestoreCollection<ChatMessage>;
   messages: any;
   channel: ChatChannel;
   messageDoc: AngularFirestoreDocument<ChatMessage>;
@@ -68,6 +76,13 @@ export class ChatComponent implements OnInit {
       height: window.innerHeight - 40
     };
 
+    this.alert = {
+      active: false,
+      type: '',
+      title: '',
+      message: ''
+    };
+
     this.initGlobalChat();
   }
 
@@ -76,7 +91,8 @@ export class ChatComponent implements OnInit {
 
     this.messages = this.messagesCol
     .snapshotChanges()
-      .pipe(map(res => {
+      .pipe(
+        map(res => {
           return res.map(r => {
             const data = r.payload.doc.data() as ChatMessage;
             const id = r.payload.doc.id;
@@ -110,6 +126,9 @@ export class ChatComponent implements OnInit {
       'timestamp': + new Date(), // https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
       'text': this.text,
       'author': this.authService.getName()
+    })
+    .catch((err) => {
+      console.error(err);
     });
   }
 
