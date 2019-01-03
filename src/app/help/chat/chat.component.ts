@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { v1 } from 'uuid';
 import { AuthService } from 'src/app/services/auth.service';
+import { trigger, transition, useAnimation } from '@angular/animations';
+import { fadeIn, fadeOutDown, fadeInUp } from 'ng-animate';
 
 interface Alert {
   active: boolean;
@@ -22,6 +24,7 @@ interface ChatWindow {
     name: string;
   };
   height: number;
+  closeButtonVisible: boolean;
 }
 
 interface ChatChannel {
@@ -45,7 +48,15 @@ interface ChatMessageId extends ChatMessage {
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.css']
+  styleUrls: ['./chat.component.css'],
+  animations: [
+    trigger('toggleChatAnmiation', [
+      transition('* => fadeIn', useAnimation(fadeInUp)),
+    ]),
+    trigger('toggleChatAnmiation', [
+      transition('fadeIn => fadeOut', useAnimation(fadeOutDown)),
+    ])
+  ]
 })
 export class ChatComponent implements OnInit {
 
@@ -53,7 +64,7 @@ export class ChatComponent implements OnInit {
   chat: ChatWindow;
   alert: Alert;
 
-  messagesCol: AngularFirestoreCollection<ChatMessage>;
+  messagesRef: AngularFirestoreCollection<ChatMessage>;
   messages: any;
   channel: ChatChannel;
   messageDoc: AngularFirestoreDocument<ChatMessage>;
@@ -62,7 +73,10 @@ export class ChatComponent implements OnInit {
   title: string;
   text: string;
 
-  constructor(private db: AngularFirestore, private authService: AuthService) {
+  toggleChatAnmiation: any;
+
+  constructor(private db: AngularFirestore,
+              private authService: AuthService) {
     // Initialize chat
     this.chat = {
       visible: false,
@@ -73,7 +87,8 @@ export class ChatComponent implements OnInit {
         prefix: 'far',
         name: 'comment-alt'
       },
-      height: window.innerHeight - 40
+      height: window.innerHeight - 40,
+      closeButtonVisible: false
     };
 
     this.alert = {
@@ -87,9 +102,9 @@ export class ChatComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.messagesCol = this.db.collection('messages');
+    this.messagesRef = this.db.collection('messages', ref => ref.orderBy('timestamp').limit(1000));
 
-    this.messages = this.messagesCol
+    this.messages = this.messagesRef
     .snapshotChanges()
       .pipe(
         map(res => {
@@ -102,14 +117,24 @@ export class ChatComponent implements OnInit {
       );
   }
 
+  toggleCloseButton() {
+    if (!this.chat.closeButtonVisible) {
+      this.chat.closeButtonVisible = true;
+    } else if (this.chat.closeButtonVisible) {
+      this.chat.closeButtonVisible = false;
+    }
+  }
+
   toggleChat() {
     this.chat.visible ? this.chat.visible = false : this.chat.visible = true;
     if (this.chat.button.text === 'Open Chat' && this.chat.visible) {
       this.chat.button.text = 'Close Chat';
       this.chat.icon.prefix = 'far';
+      this.toggleChatAnmiation = 'fadeOut';
     } else if (this.chat.button.text === 'Close Chat' && !this.chat.visible) {
       this.chat.button.text = 'Open Chat';
       this.chat.icon.prefix = 'far';
+      this.toggleChatAnmiation = 'fadeIn';
     }
   }
 
