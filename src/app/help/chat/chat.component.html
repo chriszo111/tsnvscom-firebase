@@ -3,7 +3,7 @@
 </div>
 
 <div>
-  <div class="chatbox" [hidden]="!chat.visible" [style.height.px]="[chat.height]">
+  <div class="chatbox" [hidden]="!chat.visible" [style.height.px]="[chat.height]" [@toggleChatAnmiation]="fadeIn">
 
     <p class="chat-title">
       <strong>#</strong>{{channel.name}}
@@ -13,16 +13,16 @@
         <li (click)="getMessage(message.id)" class="chatbox-message">
           {{message.data.text}}
           <hr>
-          <small>{{message.data.author}}, {{message.data.timestamp | date:'shortTime'}}</small>
+          <small>- {{message.data.author}}, {{message.data.timestamp | timeAgo}}</small>
         </li>
       </ul>
   </div>
 
   <ng-template [ngIf]="chat.visible" [ngIfElse]="openChatButton">
     <div class="input-group">
-        <input type="text" [(ngModel)]="text" placeholder="Your message.." class="form-control" (keydown.enter)="onKeydown($event)" style="height: 40px;"/>
+        <input type="text" [(ngModel)]="text" placeholder="Your message.." class="form-control" (keydown.enter)="onKeydown($event)" style="height: 40px;" placement="left" ngbTooltip="Hit [ENTER] to send" />
         <span class="input-group-btn">
-             <button class="btn btn-default" type="button" (click)="toggleChat()">x</button>
+             <button class="btn btn-default" type="button" (click)="toggleChat()"><fa-icon [icon]="['fas','times']"></fa-icon></button>
         </span>
      </div>
   </ng-template>
