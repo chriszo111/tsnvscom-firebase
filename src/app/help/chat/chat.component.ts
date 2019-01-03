@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 import { v1 } from 'uuid';
 import { AuthService } from 'src/app/services/auth.service';
 import { trigger, transition, useAnimation } from '@angular/animations';
-import { fadeIn, fadeOutDown, fadeInUp } from 'ng-animate';
+import { fadeOutDown, fadeInUp } from 'ng-animate';
 
 interface Alert {
   active: boolean;
