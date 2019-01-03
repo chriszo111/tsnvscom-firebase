@@ -3,12 +3,7 @@
     Copyright &copy; 2018 <a routerLink="/home">tsnvs.com</a>. 
     All rights reserved.
   </div>
-  <div class="p-2 flex-fill bd-highlight text-right">
-    <div class="chatbox" [hidden]="!chat.visible">
-
-    </div>
-        <button class="chatbox-button" (click)="toggleChat()"><fa-icon [icon]="['far', 'comment-alt']"></fa-icon> {{chat.button.text}}</button>
-  </div>
+  <app-chat *ngIf="authService.isLoggedIn()" class="chat"></app-chat>
   <div class="p-2 flex-fill bd-highlight text-right">
     Website by <a href="https://www.twitter.com/chrisvansmith">@chriszo111</a><br />
   </div>

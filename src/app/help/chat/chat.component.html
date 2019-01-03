@@ -1,3 +1,32 @@
-<p>
-  chat works!
-</p>
+<div>
+  <div class="chatbox" [hidden]="!chat.visible" [style.height.px]="[chat.height]">
+
+    <p class="chat-title">
+      <strong>#</strong>{{channel.name}}
+    </p>
+
+      <ul *ngFor="let message of messages | async">
+        <li (click)="getMessage(message.id)" class="chatbox-message">
+          {{message.data.text}}
+          <hr>
+          <small>{{message.data.author}}, {{message.data.timestamp | date:'shortTime'}}</small>
+        </li>
+      </ul>
+  </div>
+
+  <ng-template [ngIf]="chat.visible" [ngIfElse]="openChatButton">
+    <div class="input-group">
+        <input type="text" [(ngModel)]="text" placeholder="Your message.." class="form-control" (keydown.enter)="onKeydown($event)" style="height: 40px;"/>
+        <span class="input-group-btn">
+             <button class="btn btn-default" type="button" (click)="toggleChat()">x</button>
+        </span>
+     </div>
+  </ng-template>
+   
+   <ng-template #openChatButton>
+      <button class="chatbox-button hidden-sm-down" (click)="toggleChat()">
+          <fa-icon [icon]="[chat.icon.prefix, chat.icon.name]"></fa-icon>
+          {{chat.button.text}}
+        </button>
+   </ng-template>
+</div>
