@@ -9,39 +9,8 @@ footer {
     margin-bottom: 0;
 }
 
-.chatbox {
+.chat {
     position: absolute;
-    height: 20rem;
-    width: 20rem;
-
-    background-color: rgba(1, 1, 1, 0.5);
-    opacity: 0.8;
-
-    z-index: 1051;
-
-    bottom: 40px;
-    left: 85rem;
-}
-
-.chatbox-button {
-    position: absolute;
-    left: 85rem;
+    left: 70%;
     bottom: 0;
-    height: 40px;
-    width: 20rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-
-
-    text-align: left;
-    margin-top: 0;
-    margin-bottom: 0;
-    background: rgba(1, 1, 1, 0.0);
-    color: #d6c1c1;
-    border: none;
-}
-
-.chatbox-button:hover, .chatbox-button:focus {
-    color: #ffffff;
-    background: rgba(1, 1, 1, 0.5);
 }

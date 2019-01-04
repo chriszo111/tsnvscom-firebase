@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './services/auth-guard.service';
 
 import { HomeComponent } from './content/home/home.component';
 import { AboutComponent } from './content/about/about.component';
 import { PageNotFoundComponent } from './errors/page-not-found/page-not-found.component';
 import { ContactComponent } from './help/contact/contact.component';
+import { DashboardComponent } from './views/dashboard/dashboard.component';
 
 export const routes: Routes = [
   {
@@ -18,6 +20,10 @@ export const routes: Routes = [
     {
       path: 'contact',
       component: ContactComponent
+    },
+    {
+      path: 'dashboard',
+      component: DashboardComponent
     },
     { path: '',
       redirectTo: '/home',
