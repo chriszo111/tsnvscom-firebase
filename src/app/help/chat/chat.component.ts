@@ -1,19 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { v1 } from 'uuid';
 import { AuthService } from 'src/app/services/auth.service';
 import { trigger, transition, useAnimation } from '@angular/animations';
 import { fadeOutDown, fadeInUp } from 'ng-animate';
 import { ChatService, ChatWindow, ChatMessage } from 'src/app/services/chat.service';
-
-interface Alert {
-  active: boolean;
-  type: string;
-  title: string;
-  message: string;
-}
+import { AlertService } from 'src/app/services/alert.service';
 
 @Component({
   selector: 'app-chat',
@@ -31,7 +23,6 @@ interface Alert {
 export class ChatComponent implements OnInit {
 
   chat: ChatWindow;
-  alert: Alert;
 
   messages: any;
   message: Observable<ChatMessage>;
@@ -40,13 +31,8 @@ export class ChatComponent implements OnInit {
 
   constructor(private db: AngularFirestore,
               private authService: AuthService,
-              private chatService: ChatService) {
-    this.alert = {
-      active: false,
-      type: '',
-      title: '',
-      message: ''
-    };
+              private chatService: ChatService,
+              public alertService: AlertService) {
   }
 
   ngOnInit() {
@@ -71,9 +57,11 @@ export class ChatComponent implements OnInit {
    * @param event The user keyboard input
    */
   onKeydown(event) {
-    if (this.text.length > 0) {
+    if (this.text = '') {
       this.addMessage();
       this.text = '';
+    } else {
+      this.alertService.triggerAlert('warning', 'Nice try. Please enter a message, you cannot send whitespaces only.');
     }
   }
 

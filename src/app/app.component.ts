@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AlertService } from './services/alert.service';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,6 @@ import { AngularFireAuth } from '@angular/fire/auth';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(private afs: AngularFirestore, private afa: AngularFireAuth) {
+  constructor(public alertService: AlertService) {
   }
 }

@@ -2,6 +2,8 @@
 
   <app-navbar></app-navbar>
 
+  <ngb-alert *ngIf="alertService.visible" [type]="alertService.getType()" (close)="alertService.closeAlert()">{{ alertService.getMessage() }}</ngb-alert>
+
   <router-outlet></router-outlet>
 
   <app-footer></app-footer>
