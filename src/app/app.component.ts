@@ -9,6 +9,6 @@ import { AlertService } from './services/alert.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(private alertService: AlertService) {
+  constructor(public alertService: AlertService) {
   }
 }
