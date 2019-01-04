@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { v1 } from 'uuid';
 import { AuthService } from 'src/app/services/auth.service';
+import { AlertService } from './alert.service';
 
 export interface ChatWindow {
   visible: boolean;
@@ -53,12 +54,24 @@ export class ChatService {
   title: string;
   text: string;
 
-  constructor(private authService: AuthService, private db: AngularFirestore) {
+  constructor(private authService: AuthService,
+              private db: AngularFirestore,
+              private alertService: AlertService) {
     if (this.authService.isLoggedIn()) {
-      this.initChat();
       this.initGlobalChat();
+      this.initChat();
       this.initMessages();
     }
+  }
+
+  initGlobalChat() {
+    this.channel = {
+        icon: {
+          prefix: 'fas',
+          name: 'globe'
+        },
+        name: 'global'
+      };
   }
 
   initChat() {
@@ -76,16 +89,6 @@ export class ChatService {
       closeButtonVisible: false,
       channel: this.channel
     };
-  }
-
-  initGlobalChat() {
-    this.channel = {
-        icon: {
-          prefix: 'fas',
-          name: 'globe'
-        },
-        name: 'global'
-      };
   }
 
   initMessages() {
@@ -108,6 +111,7 @@ export class ChatService {
     if (this.authService.isLoggedIn()) {
       return this.chat;
     } else {
+      this.alertService.triggerAlert('danger', 'You are not logged in. Please login to view the chat!');
       return null;
     }
   }
@@ -127,6 +131,7 @@ export class ChatService {
    */
   addMessage(text: string): boolean {
     if (!this.authService.isLoggedIn()) {
+      this.alertService.triggerAlert('danger', 'You are not logged in. Please login to view the chat!');
       return false;
     }
 
@@ -136,6 +141,7 @@ export class ChatService {
       'author': this.authService.getName()
     })
     .catch((err) => {
+      this.alertService.triggerAlert('warning', 'Your message could not be sent. Error:\n' + err);
       console.error(err);
     });
   }
