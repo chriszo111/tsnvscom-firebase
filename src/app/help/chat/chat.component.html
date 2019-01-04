@@ -6,7 +6,7 @@
   <div class="chatbox" [hidden]="!chat.visible" [style.height.px]="[chat.height]">
 
     <p class="chat-title">
-      <strong>#</strong>{{channel.name}}
+      <strong>#</strong>{{chat.channel.name}}
     </p>
 
       <ul *ngFor="let message of messages | async">
