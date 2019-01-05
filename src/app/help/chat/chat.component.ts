@@ -57,7 +57,7 @@ export class ChatComponent implements OnInit {
    * @param event The user keyboard input
    */
   onKeydown(event) {
-    if (this.text = '') {
+    if (this.text !== '') {
       this.addMessage();
       this.text = '';
     } else {
