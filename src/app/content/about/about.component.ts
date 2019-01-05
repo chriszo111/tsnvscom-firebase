@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class AboutComponent implements OnInit {
 
-  copyrightVideos: boolean = true;
+  copyrightVideos: Boolean = true;
   bgVideo_ref: AngularFireStorageReference;
   bgVideo: Observable<any>;
 
@@ -20,12 +20,10 @@ export class AboutComponent implements OnInit {
                }
 
   ngOnInit() {
-    this.titleService.setTitle("About - Tensation Virtual Services - tsnvs.com");
+    this.titleService.setTitle('About - Tensation Virtual Services - tsnvs.com');
 
     // Mute the start screen video
-    let element = document.getElementById("aboutVideo") as HTMLMediaElement;
+    const element = document.getElementById('aboutVideo') as HTMLMediaElement;
     element.muted = true;
   }
-
-  title = 'About Us';
 }
