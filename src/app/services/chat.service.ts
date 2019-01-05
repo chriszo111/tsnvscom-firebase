@@ -5,38 +5,11 @@ import { map } from 'rxjs/operators';
 import { v1 } from 'uuid';
 import { AuthService } from 'src/app/services/auth.service';
 import { AlertService } from './alert.service';
+import { ChatWindow } from '../interfaces/chat-window';
+import { ChatMessage } from '../interfaces/chat-message';
+import { ChatChannel } from '../interfaces/chat-channel';
 
-export interface ChatWindow {
-  visible: boolean;
-  button: {
-    text: string;
-  };
-  icon: {
-    prefix: string;
-    name: string;
-  };
-  height: number;
-  closeButtonVisible: boolean;
-  channel: ChatChannel;
-}
 
-export interface ChatMessage {
-  authorName: string;
-  message: string;
-  timestamp: Date;
-}
-
-interface ChatChannel {
-  icon: {
-    prefix: string;
-    name: string;
-  };
-  name: string;
-}
-
-interface ChatMessageId extends ChatMessage {
-  id: string;
-}
 
 @Injectable({
   providedIn: 'root'
@@ -138,7 +111,8 @@ export class ChatService {
     this.db.collection('messages').doc('msg-' + v1()).set({
       'timestamp': + new Date(), // https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
       'text': text,
-      'author': this.authService.getName()
+      'author': this.authService.getName(),
+      'authorId': this.authService.getUid()
     })
     .catch((err) => {
       this.alertService.triggerAlert('warning', 'Your message could not be sent. Error:\n' + err);
