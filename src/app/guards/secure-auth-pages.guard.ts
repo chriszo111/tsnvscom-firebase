@@ -17,8 +17,8 @@ export class SecureAuthPagesGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    if (this.authService.isLoggedIn) {
-      this.alertService.triggerAlert('danger', 'You are not allowed to access this page!', false);
+    if (this.authService.isLoggedIn()) {
+      this.alertService.triggerAlert('info', `${this.authService.getName().split(' ')[0]}, you are already logged in..`);
       this.router.navigate(['dashboard']);
     }
     return true;
