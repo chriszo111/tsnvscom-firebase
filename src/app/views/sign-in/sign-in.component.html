@@ -1,4 +1,7 @@
+<div class="authBlock">
+
 <h3>Sign In</h3>
+
 <div class="formGroup">
   <input type="text" class="formControl" placeholder="Username" #userName required>
 </div>
@@ -9,25 +12,26 @@
 
 <!-- Calling SignIn Api from AuthService -->
 <div class="formGroup">
-  <input type="button" class="btn btnPrimary" value="Log in" (click)="authService.signInWithEmailAndPassword(userName.value, userPassword.value)">
+  <input type="button" class="btn sign-up-btn" value="Log In" (click)="authService.signInWithEmailAndPassword(userName.value, userPassword.value)">
 </div>
 
 <div class="formGroup">
   <span class="or"><span class="orInner">Or</span></span>
 </div>
 
-<!-- Calling GoogleAuth Api from AuthService -->
+
 <div class="formGroup">
-  <button type="button" class="btn googleBtn" (click)="authService.signInWithFacebook()">
-    <i class="fab fa-google-plus-g"></i>
+  <button type="button" class="btn sign-up-btn" (click)="authService.signInWithFacebook()">
     Log in with <fa-icon [icon]="['fab', 'facebook']"></fa-icon> Facebook
   </button>
 </div>
 
-<div class="forgotPassword">
-  <span routerLink="/forgot-password">Forgot Password?</span>
 </div>
 
 <div class="redirectToLogin">
-<span>Don't have an account?<span class="redirect" routerLink="/register"> Sign Up</span></span>
-</div>
+    <span class="redirect" routerLink="/forgot-password">Forgot Password?</span>
+  </div>
+
+<div class="redirectToLogin">
+    <span>Don't have an account? <span class="redirect" routerLink="/register">Sign Up</span></span>
+    </div>
