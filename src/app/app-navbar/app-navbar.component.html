@@ -7,7 +7,7 @@
       <a class="nav-link" href="#" routerLink="/contact" routerLinkActive="active">Contact</a>
       <a class="nav-link" href="#" *ngIf="authService.isLoggedIn()" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
       <app-login></app-login>
-      <span class="navbar-text navbar-uid noselect" *ngIf="authService.userData as user">{{user.uid}}</span>
+      <span *ngIf="authService.isLoggedIn()" class="navbar-text navbar-uid noselect" *ngIf="authService.userData as user">{{user.uid}}</span>
     </nav>
   </div>
 </header>
