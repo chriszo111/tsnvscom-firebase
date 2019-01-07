@@ -7,11 +7,9 @@ app-navbar {
 }
 
 ngb-alert {
-    position: absolute;
+    position: relative;
     top: 0;
     left: 0;
     border-radius: 0;
     width: 100%;
-    z-index: 1080;
-    opacity: 0.8;
 }
