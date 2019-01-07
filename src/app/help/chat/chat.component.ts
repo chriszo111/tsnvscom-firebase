@@ -4,8 +4,10 @@ import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { trigger, transition, useAnimation } from '@angular/animations';
 import { fadeOutDown, fadeInUp } from 'ng-animate';
-import { ChatService, ChatWindow, ChatMessage } from 'src/app/services/chat.service';
 import { AlertService } from 'src/app/services/alert.service';
+import { ChatWindow } from 'src/app/interfaces/chat-window';
+import { ChatMessage } from 'src/app/interfaces/chat-message';
+import { ChatService } from 'src/app/services/chat.service';
 
 @Component({
   selector: 'app-chat',

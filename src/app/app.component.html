@@ -1,8 +1,8 @@
+<ngb-alert *ngIf="alertService.visible" [type]="alertService.getType()" (close)="alertService.closeAlert()">{{ alertService.getMessage() }}</ngb-alert>
+
 <div class="container-fluid d-flex h-100 p-3 flex-column">
 
   <app-navbar></app-navbar>
-
-  <ngb-alert *ngIf="alertService.visible" [type]="alertService.getType()" (close)="alertService.closeAlert()">{{ alertService.getMessage() }}</ngb-alert>
 
   <router-outlet></router-outlet>
 

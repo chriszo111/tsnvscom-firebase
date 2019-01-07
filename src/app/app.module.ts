@@ -6,9 +6,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AuthService } from './services/auth.service';
-import { AuthGuard } from './services/auth-guard.service';
+import { AuthGuard } from './guards/auth.guard';
+import { SecureAuthPagesGuard } from './guards/secure-auth-pages.guard';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -31,8 +33,12 @@ import { PageNotFoundComponent } from './errors/page-not-found/page-not-found.co
 import { HomeComponent } from './content/home/home.component';
 import { ContactComponent } from './help/contact/contact.component';
 import { ChatComponent } from './help/chat/chat.component';
-import { LoginComponent } from './views/login/login.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
+import { SignInComponent } from './views/sign-in/sign-in.component';
+import { SignUpComponent } from './views/sign-up/sign-up.component';
+import { ForgotPasswordComponent } from './views/forgot-password/forgot-password.component';
+import { VerifyEmailComponent } from './views/verify-email/verify-email.component';
+import { LoginComponent } from './views/login/login.component';
 
 // Add all regular icons to library
 library.add(faCommentAlt);
@@ -52,22 +58,27 @@ library.add(faFacebook, faTeamspeak, faTwitch, faTwitter, faSteam, faGithub);
     ContactComponent,
     TimeAgoPipe,
     ChatComponent,
-    LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    SignInComponent,
+    SignUpComponent,
+    ForgotPasswordComponent,
+    VerifyEmailComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AngularFireModule.initializeApp(environment.firebase, 'rebuilt-games'),
+    AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireAuthModule,
     NgbModule.forRoot(),
     FontAwesomeModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [Title, AuthService, AuthGuard],
+  providers: [Title, AuthService, AuthGuard, SecureAuthPagesGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -9,16 +9,8 @@ import { AuthService } from '../services/auth.service';
 })
 export class AppFooterComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor(public authService: AuthService) { }
 
   ngOnInit() {
-  }
-
-  isLoggedIn(): boolean {
-    if (this.authService.isLoggedIn()) {
-      return true;
-    } else {
-      return false;
-    }
   }
 }
