@@ -12,3 +12,7 @@
     -ms-user-select: none;
     user-select: none;
 }
+
+app-login {
+    padding-right: 1rem;
+}
