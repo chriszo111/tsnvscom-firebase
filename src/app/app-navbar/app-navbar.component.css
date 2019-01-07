@@ -16,3 +16,15 @@
 app-login {
     padding-right: 1rem;
 }
+
+.other-login {
+    font-size: 0.6rem;
+}
+
+.other-login a {
+    color: rgba(175, 175, 175, 0.493);
+}
+
+.other-login a:hover, .other-login a:focus {
+    color: rgba(175, 175, 175, 0.493);
+}
