@@ -7,4 +7,10 @@ export interface User {
     displayName: string;
     photoURL: string;
     steamID64?: string;
+    address?: {
+        street?: string;
+        postcode?: string;
+        city?: string;
+        country?: string;
+    };
 }
