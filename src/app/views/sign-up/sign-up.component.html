@@ -10,7 +10,7 @@
     </div>
 
     <div class="formGroup">
-      <input type="button" class="btn btnPrimary" value="Sign Up" (click)="authService.signUpWithEmailAndPassword(userEmail.value, userPwd.value)">
+      <input type="button" class="btn sign-up-btn" value="Sign Up" (click)="authService.signUpWithEmailAndPassword(userEmail.value, userPwd.value)">
     </div>
 
     <div class="formGroup">
@@ -19,8 +19,7 @@
 
     <!-- Continue with Facebook -->
     <div class="formGroup">
-      <button type="button" class="btn facebookBtn" (click)="authService.signInWithFacebook()">
-        <i class="fab fa-facebook"></i>
+      <button type="button" class="btn sign-up-btn" (click)="authService.signInWithFacebook()">
         Continue with <fa-icon [icon]="['fab', 'facebook']"></fa-icon> Facebook
       </button>
     </div>

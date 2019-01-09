@@ -1,0 +1,160 @@
+.displayTable {
+    display: table;
+    width: 100%;
+    height: 100%;
+    background: #3F51B5;
+  }
+  
+  .displayTableCell {
+    display: table-cell;
+    vertical-align: middle;
+    width: 100%;
+    height: 100%;
+  }
+
+h3 {
+    text-align: center;
+    font-size: 22px;
+    margin: 0 0 20px;
+    color: black;
+  }
+
+  .authBlock {
+    margin: 0 auto;
+    max-width: 400px;
+    background: rgba(255, 255, 255, 1);
+    padding: 30px 40px 10px;
+    overflow: hidden;
+    -webkit-box-shadow: 0 0 4px 0 rgba(0, 0, 0, .04);
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, .04);
+    opacity: 0.5;
+    transition: opacity 1s;
+  }
+
+  .authBlock:hover, .authBlock:focus {
+    opacity: 1;
+  }
+
+  label {
+    display: block;
+    font-size: 13px;
+    padding-bottom: 5px;
+    font-weight: 600;
+  }
+  
+  .formGroup {
+    margin-bottom: 20px;
+    float: left;
+    width: 100%;
+  }
+
+  .sign-up-btn {
+    background: transparent;
+    transition: background 0.5s;
+  }
+
+  .sign-up-btn:hover {
+    background: #e7e7e7;
+    
+  }
+  
+  .formControl {
+    width: 100%;
+    display: block;
+    padding: 15px 15px 14px;
+    border: 2px solid #e7e7e7;
+    outline: none;
+    font-size: 15px;
+    color: #444444;
+    background: #fcfcfc;
+  }
+  
+  .formControl:focus {
+    border: 2px solid #d3d3d6
+  }
+  
+  input::-webkit-input-placeholder {
+    color: #BBBBBB;
+  }
+  
+  input::-moz-placeholder {
+    color: #BBBBBB;
+  }
+  
+  input:-ms-input-placeholder {
+    color: #BBBBBB;
+  }
+  
+  input:-moz-placeholder {
+    color: #BBBBBB
+  }
+  
+  .displayTable .btn {
+    width: 100%;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 15px 0;
+    background: #15CD72;
+    color: #ffffff;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .displayTable .btn:hover {
+    opacity: .88;
+  }
+  
+  .displayTable .btnSecondary {
+    background: #EEEEEE;
+    color: #404040;
+  }
+  
+  .or {
+    text-align: center;
+    display: block;
+    color: #a0a0a0;
+    background: white;
+    position: relative;
+    margin: 5px 0 0px;
+  }
+  
+  .orInner {
+    background: white;
+    display: inline-block;
+    z-index: 4;
+    position: relative;
+    padding: 0 12px;
+  }
+  
+  .or:before {
+    position: absolute;
+    content: '';
+    left: 0;
+    top: 11px;
+    width: 100%;
+    height: 1px;
+    background: #e2e2e2;
+  }
+
+  .halfWidth {
+    width: 48.5%;
+  }
+
+  .redirectToLogin {
+    padding: 15px 0 0;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 400;
+    display: block;
+    color: rgba(255, 255, 255, .6);
+  }
+
+  .redirectToLogin .redirect {
+    cursor: pointer;
+  }
+
+  .redirectToLogin .redirect:hover {
+    border-bottom: 1px dotted rgba(255, 255, 255, .6);
+  }
+  

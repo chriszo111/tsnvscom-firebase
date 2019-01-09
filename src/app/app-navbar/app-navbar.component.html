@@ -5,8 +5,9 @@
       <a class="nav-link" href="#" routerLink="/home" routerLinkActive="active">Home</a>
       <a class="nav-link" href="#" routerLink="/about" routerLinkActive="active">About</a>
       <a class="nav-link" href="#" routerLink="/contact" routerLinkActive="active">Contact</a>
-      <a class="nav-link" href="#" *ngIf="authService.isLoggedIn()" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
       <app-login></app-login>
+      <span class="navbar-text other-login" *ngIf="!authService.isLoggedIn() && router.url !== '/login'"><a routerLink="/login" routerLinkActive="active">Login using another service</a></span>
+      <a class="nav-link" href="#" *ngIf="authService.isLoggedIn()" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
       <span class="navbar-text navbar-uid noselect" *ngIf="authService.userData as user">{{user.uid}}</span>
     </nav>
   </div>
