@@ -107,6 +107,12 @@ export class AuthService {
       email: {
         address: user.email,
         verified: user.emailVerified
+      },
+      address: {
+        street: '',
+        postcode: '',
+        city: '',
+        country: ''
       }
     };
 
