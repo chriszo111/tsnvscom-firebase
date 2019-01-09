@@ -14,8 +14,4 @@ export class AppNavbarComponent {
   constructor(public authService: AuthService,
               private alertService: AlertService,
               public router: Router) { }
-
-  getUid() {
-    this.authService.getUid();
-  }
 }
