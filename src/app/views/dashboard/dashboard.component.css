@@ -1,0 +1,29 @@
+.profile-sm {
+    padding: 1rem;
+    text-align: center;
+}
+
+.profile-sm img {
+    height: 10rem;
+}
+
+.profile-picture-edit {
+    opacity: 0.5;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.btn-pwd {
+    color: white;
+    background: transparent;
+}
+
+.btn-pwd:hover, .btn-pwd:focus {
+    background: white;
+    color: rgba(0, 0, 0, 0.842);
+}
+
+.content {
+    padding-top: 2rem !important;
+}

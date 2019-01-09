@@ -25,6 +25,7 @@ import { faCommentAlt } from '@fortawesome/free-regular-svg-icons';
 import { faTimes, faGlobe, faGamepad, faServer, faHeadset, faArrowDown, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { faTwitter, faTwitch, faTeamspeak, faSteam, faFacebook, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { TimeAgoPipe } from 'time-ago-pipe';
+import { FileDropModule } from 'ngx-file-drop';
 
 import { AppNavbarComponent } from './app-navbar/app-navbar.component';
 import { AppFooterComponent } from './app-footer/app-footer.component';
@@ -76,7 +77,8 @@ library.add(faFacebook, faTeamspeak, faTwitch, faTwitter, faSteam, faGithub);
     FontAwesomeModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FileDropModule
   ],
   providers: [Title, AuthService, AuthGuard, SecureAuthPagesGuard],
   bootstrap: [AppComponent]

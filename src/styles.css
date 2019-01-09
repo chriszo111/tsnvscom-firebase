@@ -2,3 +2,9 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 /* Bootstrap starter template "Cover" */
 @import "cover.css";
+
+.file-drop-custom {
+    height: 10rem;
+    border-radius: 30rem;
+    padding-top: 2rem;
+}
