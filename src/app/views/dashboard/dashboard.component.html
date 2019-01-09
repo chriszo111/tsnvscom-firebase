@@ -1,51 +1,58 @@
-<!-- Sidebar navigation -->
-<div class="container-fluid">
-    <div class="row">
+<div class="row">
   
-      <nav class="col-md-2 d-md-block bg-light sidebar">
-        <div class="sidebar-sticky">
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              <a class="nav-link active">
-                <i class="fas fa-user"></i>User Profile
-              </a>
-            </li>
-            <!-- Calling SignOut() Api from AuthService -->
-            <li class="nav-item">
-              <a class="nav-link" (click)="authService.logout()">
-                <i class="fas fa-sign-out-alt"></i>Log out
-              </a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+  <div class="col-md-2 offset-md-2">
+    <div class="col-md-12 profile-sm" *ngIf="authService.userData as user">
+      <h4 class="text-center">{{user.displayName}}</h4>
+      <file-drop customstyle="file-drop-custom"
+        (onFileDrop)="dropped($event)" (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
+        <img class="img-thumbnail rounded-circle profile-picture" 
+        (mouseover)="toggleEditPicture()" (mouseleave)="toggleEditPicture()" [src]="profilePhoto" alt="{{user.displayName}}">
+      </file-drop>
+    </div>
+
+    <nav class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+      <a class="nav-link active" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile"
+        aria-selected="true" *ngIf="authService.userData">Profile</a>
+      <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab"
+        aria-controls="v-pills-messages" aria-selected="false">Messages</a>
+      <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab"
+        aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+    </nav>
+
+  </div>
   
-      <!-- Main content -->
-      <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-        <div class="inner-adjust">
-  
-          <div class="pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">User Profile</h1>
-          </div>
-          <!-- Show user data when logged in -->
-          <div class="row" *ngIf="authService.userData as user">
-            <div class="col-md-12">
-              <div class="media">
-                <img class="align-self-start mr-5 img-thumbnail rounded-circle" src="{{(user.photoURL) ? user.photoURL : '/assets/dummy-user.png'}}"
-                  alt="{{user.displayName}}">
-                <div class="media-body">
-                  <h1>Hello: <strong>{{(user.displayName) ? user.displayName : 'Super Admin'}}</strong></h1>
-                  <p>User ID: <strong>{{user.uid}}</strong></p>
-                  <p>Email: <strong>{{user.email}}</strong></p>
-                  <p>Email Verified: <strong>{{user.emailVerified}}</strong></p>
+  <div class="col-md-8 content">
+    <main class="tab-content" id="v-pills-tabContent">
+      <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" *ngIf="authService.userData as user">
+        <div class="col-md-12">
+          <div class="row">
+            <form class="form col-md-5 col-md-offset-2">
+              <div class="form-row">
+                <label for="inputId">Id</label>
+                <p class="form-control">{{user.uid}}</p>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="inputEmail">Email</label>
+                  <input [(ngModel)]="user.email" [ngModelOptions]="{standalone: true}" [value]="user.email" type="email"
+                    class="form-control" id="inputEmail" placeholder="Email" disabled>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputPassword">&nbsp;</label>
+                  <button class="btn form-control btn-pwd" id="inputPassword" type="button">Change password</button>
                 </div>
               </div>
-            </div>
+            </form>
           </div>
-  
         </div>
-      </main>
-  
-    </div>
-  </div>
+      </div>
+      <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
 
+      </div>
+      <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+
+      </div>
+    </main>
+  </div>
+  
+</div>
