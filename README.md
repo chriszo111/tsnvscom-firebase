@@ -14,6 +14,7 @@ And the following Third-Party packages
 * [TimeAgoPipe](https://github.com/AndrewPoyntz/time-ago-pipe)
 * [uuid](https://github.com/kelektiv/node-uuid)
 * [angular-fontawesome](https://github.com/FortAwesome/angular-fontawesome)
+* [ngx-file-drop](https://github.com/georgipeltekov/ngx-file-drop)
 
 # Current functionality
 * Authentication Service through Facebook with Firebase Auth
