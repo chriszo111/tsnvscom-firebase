@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/chriszo111/tsnvscom-firebase.svg?branch=master)](https://travis-ci.org/chriszo111/tsnvscom-firebase)
+[![Build Status](https://travis-ci.org/chriszo111/tsnvscom-firebase.svg?branch=master)](https://travis-ci.org/chriszo111/tsnvscom-firebase) [![dependencies](https://david-dm.org/chriszo111/tsnvscom-firebase.svg)](https://travis-ci.org/chriszo111/tsnvscom-firebase)
 
 # Angular 7 Web Application
 This is a playground version of an Angular 7 Application, created with Angular CLI v6.1.3 using..
