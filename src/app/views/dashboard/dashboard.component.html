@@ -5,8 +5,7 @@
       <h4 class="text-center">{{user.displayName}}</h4>
       <file-drop customstyle="file-drop-custom"
         (onFileDrop)="dropped($event)" (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
-        <img class="img-thumbnail rounded-circle profile-picture" 
-        (mouseover)="toggleEditPicture()" (mouseleave)="toggleEditPicture()" [src]="profilePhoto" alt="{{user.displayName}}">
+        <img ngxGravatar [email]="user.email" [src]="user.photoURL">
       </file-drop>
     </div>
 
