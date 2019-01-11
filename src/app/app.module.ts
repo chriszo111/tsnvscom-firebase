@@ -26,6 +26,8 @@ import { faTimes, faGlobe, faGamepad, faServer, faHeadset, faArrowDown, faExtern
 import { faTwitter, faTwitch, faTeamspeak, faSteam, faFacebook, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { TimeAgoPipe } from 'time-ago-pipe';
 import { FileDropModule } from 'ngx-file-drop';
+import { GravatarModule } from 'ngx-gravatar';
+import { gravatarConfig } from './configs/gravatar.conf';
 
 import { AppNavbarComponent } from './app-navbar/app-navbar.component';
 import { AppFooterComponent } from './app-footer/app-footer.component';
@@ -78,7 +80,8 @@ library.add(faFacebook, faTeamspeak, faTwitch, faTwitter, faSteam, faGithub);
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    FileDropModule
+    FileDropModule,
+    GravatarModule.forRoot(gravatarConfig)
   ],
   providers: [Title, AuthService, AuthGuard, SecureAuthPagesGuard],
   bootstrap: [AppComponent]

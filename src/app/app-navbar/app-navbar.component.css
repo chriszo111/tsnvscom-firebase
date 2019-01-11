@@ -1,7 +1,7 @@
 .navbar-uid {
     font-size: 0.6rem;
     color: gray;
-    padding-left: 1rem;
+    padding-left: 0.5rem;
 }
 
 .noselect {
@@ -11,10 +11,6 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-}
-
-app-login {
-    padding-right: 1rem;
 }
 
 .other-login {

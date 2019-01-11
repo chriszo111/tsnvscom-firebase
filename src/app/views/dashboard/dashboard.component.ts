@@ -19,9 +19,7 @@ interface Badge {
 export class DashboardComponent implements OnInit {
 
   displayName: Observable<string>;
-  photoUrl: Observable<string>;
   showEditPicture: boolean;
-  profilePhoto: string;
   public files: UploadFile[] = [];
 
   constructor(public authService: AuthService,
@@ -31,9 +29,6 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.titleService.setTitle('Dashboard - Tensation Virtual Services - tsnvs.com');
     this.showEditPicture = false;
-    this.profilePhoto = '../../../assets/img/dummy-user.jpg';
-
-    console.log(this.authService.userData);
   }
 
   getEmailVerified(): Badge {
@@ -46,16 +41,6 @@ export class DashboardComponent implements OnInit {
 
   resendVerificationEmail() {
     this.authService.sendVerificationEmail();
-  }
-
-  toggleEditPicture() {
-    if (this.showEditPicture) {
-      this.profilePhoto = '../../../assets/img/dummy-user.jpg';
-      this.showEditPicture = false;
-    } else {
-      this.profilePhoto = '../../../assets/img/edit-profile-photo.png';
-      this.showEditPicture = true;
-    }
   }
 
   public dropped(event: UploadEvent) {
