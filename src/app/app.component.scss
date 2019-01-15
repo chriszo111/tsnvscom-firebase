@@ -12,4 +12,13 @@ ngb-alert {
     left: 0;
     border-radius: 0;
     width: 100%;
+    z-index: 1080;
+}
+
+ngb-sidebar-container {
+    height: 100vh;
+}
+
+ng-sidebar {
+    background-color: lightgray;
 }
