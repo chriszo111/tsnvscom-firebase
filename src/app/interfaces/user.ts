@@ -13,4 +13,9 @@ export interface User {
         city?: string;
         country?: string;
     };
+    settings: {
+        anonymous: boolean;
+        dark: boolean;
+        preferGravatar: boolean;
+    };
 }
