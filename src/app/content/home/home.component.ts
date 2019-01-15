@@ -3,6 +3,7 @@ import { Title } from '@angular/platform-browser';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { trigger, transition, useAnimation } from '@angular/animations';
 import { bounce, fadeIn } from 'ng-animate';
+import { AppComponent } from 'src/app/app.component';
 
 @Component({
   selector: 'app-home',
@@ -23,13 +24,17 @@ export class HomeComponent implements OnInit {
   public innerHeight: any;
 
   constructor(private titleService: Title,
-              private ngbCarouselConfig: NgbCarouselConfig) {
+              private ngbCarouselConfig: NgbCarouselConfig,
+              public appComponent: AppComponent) {
                 ngbCarouselConfig.showNavigationArrows = false;
                 ngbCarouselConfig.interval = 15000;
               }
 
   ngOnInit() {
     this.titleService.setTitle('Home - Tensation Virtual Services - tsnvs.com');
+    if (this.appComponent._opened) {
+      this.appComponent._opened = false;
+    }
 
     this.innerWidth = window.innerWidth;
     this.innerHeight = window.innerHeight;

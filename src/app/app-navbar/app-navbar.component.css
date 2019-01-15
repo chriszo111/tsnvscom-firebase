@@ -1,20 +1,10 @@
-.navbar-uid {
-    font-size: 0.6rem;
-    color: gray;
-    padding-left: 0.5rem;
-}
-
-.noselect {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+.no-border {
+    border-color: transparent;
 }
 
 .other-login {
     font-size: 0.6rem;
+    padding-left: 0.5rem;
 }
 
 .other-login a {
@@ -23,4 +13,14 @@
 
 .other-login a:hover, .other-login a:focus {
     color: rgba(175, 175, 175, 0.493);
+}
+
+.user-photo {
+    opacity: 0.7;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.user-photo:hover {
+    opacity: 1.0;
+    cursor: pointer;
 }

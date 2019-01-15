@@ -1,15 +1,41 @@
-<header class="masthead">
+<header class="masthead" style="z-index: 2000">
   <div class="inner">
-    <h3 class="masthead-brand">tsnvs<strong style="color: lightgray">.com</strong></h3>
+
+    <button *ngIf="authService.isLoggedIn() && router.url !== '/home'" type="button" class="btn btn-sm btn-outline-light float-left mr-2 no-border" (click)="_toggleSidebar()">
+        <fa-layers>
+          <fa-icon *ngIf="!isSidebarOpen" icon="bars"></fa-icon>
+          <fa-icon *ngIf="isSidebarOpen" icon="angle-double-left"></fa-icon>
+        </fa-layers>
+    </button>
+
+    <h3 class="masthead-brand brand">tsnvs<strong>.com</strong></h3>
     <nav class="nav nav-masthead justify-content-center sticky-top">
-      <a class="nav-link" href="#" routerLink="/home" routerLinkActive="active">Home</a>
-      <a class="nav-link" href="#" routerLink="/about" routerLinkActive="active">About</a>
-      <a class="nav-link" href="#" routerLink="/contact" routerLinkActive="active">Contact</a>
-      <span class="navbar-text other-login" *ngIf="!authService.isLoggedIn() && router.url !== '/login'"><a routerLink="/login" routerLinkActive="active">Login using another service</a></span>
-      <a class="nav-link" href="#" *ngIf="authService.isLoggedIn()" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
-      <span *ngIf="authService.userData as user" style="padding-left: 0.5rem;"><img ngxGravatar size="30" [email]="user.email" [src]="user.photoURL" borderColor="rgba(255,255,255,0.5)" preferGravatar="false"></span>
+
+      <a class="nav-link" href="#" routerLink="/home" routerLinkActive="active">
+        Home
+      </a>
+      <a class="nav-link" href="#" routerLink="/about" routerLinkActive="active">
+        About
+      </a>
+      <a class="nav-link" href="#" routerLink="/contact" routerLinkActive="active">
+        Contact
+      </a>
+
+      <a class="nav-link" href="#" *ngIf="authService.isLoggedIn()" routerLink="/dashboard" routerLinkActive="active">
+        Dashboard
+      </a>
+      
       <app-login></app-login>
-      <span class="navbar-text navbar-uid noselect" *ngIf="authService.userData as user">{{user.uid}}</span>
+
+      <span class="navbar-text other-login" *ngIf="!authService.isLoggedIn() && router.url !== '/login'">
+        <a [swal]="['Early Access', 'At this stage you can only sign-in using Facebook.', 'info']" routerLink="/login"
+          routerLinkActive="active">Login using another service</a>
+      </span>
+
+      <span *ngIf="!appComponent._opened && authService.userData as user" class="user-photo ml-3" (click)="_toggleSidebar()">
+          <img ngxGravatar size="30" borderColor="rgba(255,255,255,0.5)" [email]="user.email" [src]="user.photoURL">
+      </span>
+
     </nav>
   </div>
 </header>

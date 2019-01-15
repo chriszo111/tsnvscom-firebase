@@ -50,7 +50,7 @@ img {
     left: 0;
     right: 0;
 
-    z-index: 1040;
+    z-index: 1000;
   
    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000100+0,ffffff+100&1+0,0+100 */
     background: -moz-linear-gradient(top, rgba(0,1,0,1) 0%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
