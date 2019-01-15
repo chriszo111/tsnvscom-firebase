@@ -1,0 +1,13 @@
+<span *ngIf="authService.userData as user" class="user-photo" (click)="_toggleSidebar()">
+    <img class="mt-2" ngxGravatar size="60" borderColor="rgba(255,255,255,0.5)" [email]="user.email" [src]="user.photoURL">
+</span>
+
+<p *ngIf="authService.userData as user" class="text-center sidebar-title">{{user.displayName}}</p>
+
+
+<nav>
+    <ul>
+        <li><a><fa-icon icon="sync"></fa-icon> SyncStream</a></li>
+        <li><a><fa-icon [icon]="['far','comment-alt']"></fa-icon> Chat</a></li>
+    </ul>
+</nav>
