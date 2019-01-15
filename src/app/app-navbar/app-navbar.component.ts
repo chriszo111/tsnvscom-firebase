@@ -14,19 +14,17 @@ import { Sidebar } from 'ng-sidebar';
 })
 export class AppNavbarComponent implements AfterViewInit {
 
-  isSidebarOpen: Boolean = false;
 
   constructor(public authService: AuthService,
               public router: Router,
               public readonly swalTargets: SwalPartialTargets,
-              private appComponent: AppComponent) { }
+              public appComponent: AppComponent) { }
 
   ngAfterViewInit() { }
 
   _toggleSidebar() {
     if (this.router.url !== '/home') {
       this.appComponent._opened = !this.appComponent._opened;
-      this.isSidebarOpen = !this.isSidebarOpen;
     }
   }
 }
