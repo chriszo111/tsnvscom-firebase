@@ -113,6 +113,11 @@ export class AuthService {
         postcode: '',
         city: '',
         country: ''
+      },
+      settings: {
+        anonymous: false,
+        dark: true,
+        preferGravatar: false
       }
     };
 
