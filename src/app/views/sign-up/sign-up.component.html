@@ -2,23 +2,6 @@
     <h3>Sign Up</h3>
 
     <div class="formGroup">
-      <input type="email" class="formControl" placeholder="Email Address" #userEmail required>
-    </div>
-
-    <div class="formGroup">
-      <input type="password" class="formControl" placeholder="Password" #userPwd required>
-    </div>
-
-    <div class="formGroup">
-      <input type="button" class="btn sign-up-btn" value="Sign Up" (click)="authService.signUpWithEmailAndPassword(userEmail.value, userPwd.value)">
-    </div>
-
-    <div class="formGroup">
-      <span class="or"><span class="orInner">Or</span></span>
-    </div>
-
-    <!-- Continue with Facebook -->
-    <div class="formGroup">
       <button type="button" class="btn sign-up-btn" (click)="authService.signInWithFacebook()">
         Continue with <fa-icon [icon]="['fab', 'facebook']"></fa-icon> Facebook
       </button>
