@@ -4,12 +4,14 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { auth } from 'firebase/app';
 import { AlertService } from './alert.service';
 import { HttpClient } from '@angular/common/http';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { User } from '../interfaces/user';
+import { UserProfile } from '../interfaces/user-profile';
 
 @Injectable()
 export class AuthService {
   public userData: any;
+  public userProfile: any;
 
   constructor(private afa: AngularFireAuth,
               private router: Router,
@@ -24,7 +26,9 @@ export class AuthService {
         JSON.parse(localStorage.getItem('user'));
       } else {
         localStorage.setItem('user', null);
+        localStorage.setItem('profile', null);
         JSON.parse(localStorage.getItem('user'));
+        JSON.parse(localStorage.getItem('profile'));
       }
     });
   }
@@ -36,6 +40,7 @@ export class AuthService {
           this.router.navigate(['dashboard']);
         });
         this.setUserData(result.user);
+        this.setUserProfile(result.user);
       }).catch((error) => {
         this.alertService.triggerAlert('warning', error.message);
       });
@@ -48,6 +53,7 @@ export class AuthService {
           this.router.navigate(['dashboard']);
         });
       this.setUserData(result.user);
+      this.setUserProfile(result.user);
     }).catch((error) => {
       window.alert(error);
     });
@@ -64,6 +70,7 @@ export class AuthService {
       up and returns promise */
       this.sendVerificationEmail();
       this.setUserData(result.user);
+      this.setUserProfile(result.user);
     }).catch((err) => {
       this.alertService.triggerAlert('danger', 'Oh snap! Something went wrong, the email could not be sent. Error: ' + err.message);
     });
@@ -100,6 +107,7 @@ export class AuthService {
 
   setUserData(user) {
     const userRef: AngularFirestoreDocument<any> = this.db.doc(`users/${user.uid}`);
+
     const userData: User = {
       uid: user.uid,
       displayName: user.displayName,
@@ -107,17 +115,6 @@ export class AuthService {
       email: {
         address: user.email,
         verified: user.emailVerified
-      },
-      address: {
-        street: '',
-        postcode: '',
-        city: '',
-        country: ''
-      },
-      settings: {
-        anonymous: false,
-        dark: true,
-        preferGravatar: false
       }
     };
 
@@ -126,17 +123,39 @@ export class AuthService {
     });
   }
 
-  /**
-   * Gets picture from Facebook with Graph API v3.2 cURL approach
-   * (Needs a more generic solution to reduce being dependent on provider)
-   */
-  getPictureFromFacebook(): Promise<any> {
-    this.db.collection('tokens').doc('fb').get().subscribe((doc) => {
-      const photoId = this.afa.auth.currentUser.providerData[0].photoURL.split('/')[3];
-      return this.http.get(`https://graph.facebook.com/v3.2/${photoId}/picture?access_token=${doc.data().token}`).toPromise();
-    });
+  setUserProfile(user) {
+    const userProfileCol: AngularFirestoreCollection = this.db.collection('profiles');
+    const userProfileRef: AngularFirestoreDocument<UserProfile> = userProfileCol.doc(user.uid);
 
-    return;
+    userProfileRef.ref.get()
+      .then((doc) => {
+        localStorage.setItem('profile', JSON.stringify(doc.data()));
+        JSON.parse(localStorage.getItem('profile'));
+
+        return userProfileRef.set(doc.data(), {
+          merge: true
+        });
+      })
+      .catch((err) => { // User exists but not profile, so first login
+        this.userProfile = {
+          steamID64: '',
+          address: {
+              street: '',
+              postcode: '',
+              city: '',
+              country: ''
+          },
+          settings: {
+              anonymous: false,
+              dark: true,
+              preferGravatar: false
+          }
+        };
+
+      return userProfileRef.set(this.userProfile, {
+        merge: true
+      });
+    });
   }
 
   resendVerificationEmail() {
@@ -147,6 +166,23 @@ export class AuthService {
     .catch((err) => {
       this.alertService.triggerAlert('warning', 'Oh snap! Something went wrong, the email could not be sent. Error: ' + err);
     });
+  }
+
+  updateUserProfile(profile, uid) {
+    const userProfileRef: AngularFirestoreDocument<UserProfile> = this.db.collection('profiles').doc(uid);
+    userProfileRef.update(profile)
+    .then(() => {
+      this.alertService.triggerAlert('success', 'Profile updated successfully!');
+    })
+    .catch((err) => {
+      this.alertService.triggerAlert('warning', 'Something went wrong while updating your profile.');
+    });
+  }
+
+  getMessagesCurrentUser() {
+    const query = this.db.collection('messages', ref => ref.where('authorId', '==', this.userData.uid));
+
+    console.log(query);
   }
 
   getEmailVerified(): boolean {
@@ -165,8 +201,9 @@ export class AuthService {
 
   logout() {
     return this.afa.auth.signOut().then(() => {
-      localStorage.removeItem('user');
+      localStorage.clear();
       this.userData = null;
+      this.userProfile = null;
       this.router.navigate(['/']);
     });
   }
