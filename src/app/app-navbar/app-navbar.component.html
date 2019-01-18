@@ -1,13 +1,6 @@
 <header class="masthead" style="z-index: 2000">
   <div class="inner">
 
-    <button *ngIf="authService.isLoggedIn() && router.url !== '/home'" type="button" class="btn btn-sm btn-outline-light float-left mr-2 no-border" (click)="_toggleSidebar()">
-        <fa-layers>
-          <fa-icon *ngIf="!isSidebarOpen" icon="bars"></fa-icon>
-          <fa-icon *ngIf="isSidebarOpen" icon="angle-double-left"></fa-icon>
-        </fa-layers>
-    </button>
-
     <h3 class="masthead-brand brand">tsnvs<strong>.com</strong></h3>
     <nav class="nav nav-masthead justify-content-center sticky-top">
 

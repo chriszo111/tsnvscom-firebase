@@ -1,17 +1,17 @@
 <div class="row">
-  
+
   <div class="col-md-2 offset-md-2">
     <div class="col-md-12 profile-sm" *ngIf="authService.userData as user">
       <h4 class="text-center">{{user.displayName}}</h4>
-      <file-drop customstyle="file-drop-custom"
-        (onFileDrop)="dropped($event)" (onFileOver)="fileOver($event)" (onFileLeave)="fileLeave($event)">
-        <img ngxGravatar [email]="user.email" [src]="user.photoURL">
+      <file-drop customstyle="file-drop-custom" (onFileDrop)="dropped($event)" (onFileOver)="fileOver($event)"
+        (onFileLeave)="fileLeave($event)">
+        <img ngxGravatar [email]="user.email" [src]="user.photoURL" [preferGravatar]="userProfile.settings.preferGravatar">
       </file-drop>
     </div>
 
     <nav class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-      <a class="nav-link active" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile"
-        aria-selected="true" *ngIf="authService.userData">Profile</a>
+      <a class="nav-link active" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab"
+        aria-controls="v-pills-profile" aria-selected="true" *ngIf="authService.userData">Profile</a>
       <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab"
         aria-controls="v-pills-messages" aria-selected="false">Messages</a>
       <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab"
@@ -19,13 +19,15 @@
     </nav>
 
   </div>
-  
+
   <div class="col-md-8 content">
     <main class="tab-content" id="v-pills-tabContent">
-      <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" *ngIf="authService.userData as user">
-        <div class="col-md-12">
+      <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+        <div class="col-md-12 text-left">
+          <h4>Account</h4>
+          <hr>
           <div class="row">
-            <form class="form col-md-5 col-md-offset-2">
+            <form class="form col-md-8 col-md-offset-2" *ngIf="authService.userData as user">
               <div class="form-row">
                 <label for="inputId">Id</label>
                 <p class="form-control">{{user.uid}}</p>
@@ -38,20 +40,101 @@
                 </div>
                 <div class="form-group col-md-6">
                   <label for="inputPassword">&nbsp;</label>
-                  <button class="btn form-control btn-pwd" id="inputPassword" type="button">Change password</button>
+                  <button class="btn form-control btn-pwd" routerLink="/forgot-password" id="inputPassword" type="button">Forgot
+                    password</button>
+                </div>
+              </div>
+            </form>
+          </div>
+
+
+          <div class="row mt-3">
+            <form class="form col-md-8 col-md-offset-2" *ngIf="userProfile.address as address">
+              <div class="form-row">
+                <div class="col-md-10">
+                  <h4>Profile</h4>
+                </div>
+                <div class="col-md-2 text-right">
+                  <button type="button" class="btn btn-outline-primary" (click)="authService.updateUserProfile(userProfile,authService.userData.uid)">Save</button>
+                </div>
+                <hr>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label for="inputStreet">Address</label>
+                  <input [(ngModel)]="address.street" [ngModelOptions]="{standalone: true}" [value]="address.street"
+                    type="text" class="form-control" id="inputStreet" placeholder="Test Ave 1">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-3">
+                  <label for="inputPostcode">Postcode</label>
+                  <input [(ngModel)]="address.postcode" [ngModelOptions]="{standalone: true}" [value]="address.postcode"
+                    type="text" class="form-control" id="inputPostcode" placeholder="97465">
+                </div>
+                <div class="form-group col-md-5">
+                  <label for="inputCity">City</label>
+                  <input [(ngModel)]="address.city" [ngModelOptions]="{standalone: true}" [value]="address.city" type="text"
+                    class="form-control" id="inputCity" placeholder="City">
+                </div>
+                <div class="form-group col-md-4">
+                  <label for="inputCountry">Country</label>
+                  <input [(ngModel)]="address.country" [ngModelOptions]="{standalone: true}" [value]="address.country"
+                    type="text" class="form-control" id="inputCountry" placeholder="Country">
                 </div>
               </div>
             </form>
           </div>
         </div>
       </div>
-      <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+
+      <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab" *ngIf="authService.userData as user">
 
       </div>
-      <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
 
+      <div class="tab-pane fade text-left" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab"
+        *ngIf="userProfile.settings as settings">
+        <h4>Settings</h4>
+        <hr>
+        <form class="form col-md-5 col-md-offset-2">
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="anonModeSwitch" [checked]="settings.anonymous"
+                  (change)="updateSettings('anonymous')">
+                <label class="custom-control-label" for="anonModeSwitch">
+                  Turn anonymous mode
+                  <span *ngIf="settings.anonymous">off</span>
+                  <span *ngIf="!settings.anonymous">on</span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="darkModeSwitch" [checked]="settings.dark"
+                  (change)="updateSettings('dark')">
+                <label class="custom-control-label" for="darkModeSwitch">
+                  <span *ngIf="settings.dark">Disable</span>
+                  <span *ngIf="!settings.dark">Enable</span>
+                  dark mode
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="preferGravatarSwitch" [checked]="settings.preferGravatar"
+                  (change)="updateSettings('gravatar')">
+                <label class="custom-control-label" for="preferGravatarSwitch">Prefer gravatar as profile picture</label>
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
     </main>
   </div>
-  
+
 </div>

@@ -4,6 +4,7 @@ import { Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { UploadEvent, UploadFile, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
 import { AlertService } from 'src/app/services/alert.service';
+import { UserProfile } from 'src/app/interfaces/user-profile';
 
 interface Badge {
   type: string;
@@ -19,16 +20,36 @@ interface Badge {
 export class DashboardComponent implements OnInit {
 
   displayName: Observable<string>;
-  showEditPicture: boolean;
   public files: UploadFile[] = [];
+  userProfile: UserProfile;
 
   constructor(public authService: AuthService,
               private alertService: AlertService,
               private titleService: Title) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.titleService.setTitle('Dashboard - Tensation Virtual Services - tsnvs.com');
-    this.showEditPicture = false;
+    this.userProfile = JSON.parse(localStorage.getItem('profile'));
+  }
+
+  updateUserProfile() {
+    this.authService.updateUserProfile(this.userProfile, this.authService.userData.uid);
+  }
+
+  updateSettings(setting) {
+    switch (setting) {
+      case 'gravatar':
+          this.userProfile.settings.preferGravatar = !this.userProfile.settings.preferGravatar;
+        break;
+      case 'dark':
+        this.userProfile.settings.dark = !this.userProfile.settings.dark;
+        break;
+      case 'anonymous':
+        this.userProfile.settings.anonymous = !this.userProfile.settings.anonymous;
+        break;
+    }
+
+    this.authService.updateUserProfile(this.userProfile, this.authService.userData.uid);
   }
 
   getEmailVerified(): Badge {
