@@ -65,7 +65,7 @@ export class ChatService {
   }
 
   initMessages() {
-    this.messagesRef = this.db.collection('messages', ref => ref.orderBy('timestamp').limit(1000));
+    this.messagesRef = this.db.collection('messages', ref => ref.orderBy('timestamp', 'desc').limit(1000));
 
     this.messages = this.messagesRef
     .snapshotChanges()
