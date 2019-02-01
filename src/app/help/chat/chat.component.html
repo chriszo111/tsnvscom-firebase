@@ -9,7 +9,12 @@
         <li (click)="getMessage(message.id)" class="chatbox-message">
           {{message.data.text}}
           <hr>
-          <small>- {{message.data.author}}, {{message.data.timestamp | timeAgo}}</small>
+          <small>
+            - 
+            <em *ngIf="authService.isAnon(message.data.authorId)">anonymous</em>
+            <em *ngIf="!authService.isAnon(message.data.authorId)">{{message.data.author}}</em>
+            , {{message.data.timestamp | timeAgo}}
+          </small>
         </li>
       </ul>
   </div>

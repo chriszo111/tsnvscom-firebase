@@ -6,7 +6,10 @@ import { AlertService } from './alert.service';
 import { HttpClient } from '@angular/common/http';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { User } from '../interfaces/user';
+import { map } from 'rxjs/operators';
 import { UserProfile } from '../interfaces/user-profile';
+import { ChatMessage } from '../interfaces/chat-message';
+import { isNullOrUndefined } from 'util';
 
 @Injectable()
 export class AuthService {
@@ -14,11 +17,11 @@ export class AuthService {
   public userProfile: any;
 
   constructor(private afa: AngularFireAuth,
-              private router: Router,
-              public ngZone: NgZone,
-              private alertService: AlertService,
-              private db: AngularFirestore,
-              private http: HttpClient) {
+    private router: Router,
+    public ngZone: NgZone,
+    private alertService: AlertService,
+    private db: AngularFirestore,
+    private http: HttpClient) {
     this.afa.authState.subscribe(user => {
       if (user) {
         this.userData = user;
@@ -48,15 +51,15 @@ export class AuthService {
 
   authLogin(provider) {
     return this.afa.auth.signInWithPopup(provider)
-    .then((result) => {
-       this.ngZone.run(() => {
+      .then((result) => {
+        this.ngZone.run(() => {
           this.router.navigate(['dashboard']);
         });
-      this.setUserData(result.user);
-      this.setUserProfile(result.user);
-    }).catch((error) => {
-      window.alert(error);
-    });
+        this.setUserData(result.user);
+        this.setUserProfile(result.user);
+      }).catch((error) => {
+        window.alert(error);
+      });
   }
 
   signInWithFacebook() {
@@ -65,35 +68,35 @@ export class AuthService {
 
   signUpWithEmailAndPassword(email, password) {
     return this.afa.auth.createUserWithEmailAndPassword(email, password)
-    .then((result) => {
-      /* Call the SendVerificaitonMail() function when new user sign
-      up and returns promise */
-      this.sendVerificationEmail();
-      this.setUserData(result.user);
-      this.setUserProfile(result.user);
-    }).catch((err) => {
-      this.alertService.triggerAlert('danger', 'Oh snap! Something went wrong, the email could not be sent. Error: ' + err.message);
-    });
+      .then((result) => {
+        /* Call the SendVerificaitonMail() function when new user sign
+        up and returns promise */
+        this.sendVerificationEmail();
+        this.setUserData(result.user);
+        this.setUserProfile(result.user);
+      }).catch((err) => {
+        this.alertService.triggerAlert('danger', 'Oh snap! Something went wrong, the email could not be sent. Error: ' + err.message);
+      });
   }
 
   sendVerificationEmail() {
     return this.afa.auth.currentUser.sendEmailVerification()
-    .then(() => {
-      this.alertService.triggerAlert('success', 'Verification email sent. Please check your inbox!');
-      this.router.navigate(['verify-email-address']);
-    })
-    .catch((err) => {
-      this.alertService.triggerAlert('warning', 'Oh snap! Something went wrong, the email could not be sent. Error: ' + err.message);
-    });
+      .then(() => {
+        this.alertService.triggerAlert('success', 'Verification email sent. Please check your inbox!');
+        this.router.navigate(['verify-email-address']);
+      })
+      .catch((err) => {
+        this.alertService.triggerAlert('warning', 'Oh snap! Something went wrong, the email could not be sent. Error: ' + err.message);
+      });
   }
 
   forgotPassword(passwordResetEmail) {
     return this.afa.auth.sendPasswordResetEmail(passwordResetEmail)
-    .then(() => {
-      this.alertService.triggerAlert('warning', 'Password reset email sent, check your inbox.');
-    }).catch((err) => {
-      this.alertService.triggerAlert('danger', 'Oh snap! Something went wrong, the email could not be sent. Error: ' + err.message);
-    });
+      .then(() => {
+        this.alertService.triggerAlert('warning', 'Password reset email sent, check your inbox.');
+      }).catch((err) => {
+        this.alertService.triggerAlert('danger', 'Oh snap! Something went wrong, the email could not be sent. Error: ' + err.message);
+      });
   }
 
   isLoggedIn(): boolean {
@@ -140,49 +143,47 @@ export class AuthService {
         this.userProfile = {
           steamID64: '',
           address: {
-              street: '',
-              postcode: '',
-              city: '',
-              country: ''
+            street: '',
+            postcode: '',
+            city: '',
+            country: ''
           },
           settings: {
-              anonymous: false,
-              dark: true,
-              preferGravatar: false
+            anonymous: false,
+            dark: true,
+            preferGravatar: false
           }
         };
 
-      return userProfileRef.set(this.userProfile, {
-        merge: true
+        return userProfileRef.set(this.userProfile, {
+          merge: true
+        });
       });
-    });
   }
 
   resendVerificationEmail() {
     this.afa.auth.currentUser.sendEmailVerification()
-    .then((res) => {
-      this.alertService.triggerAlert('success', 'Verification email sent. Please check your inbox!');
-    })
-    .catch((err) => {
-      this.alertService.triggerAlert('warning', 'Oh snap! Something went wrong, the email could not be sent. Error: ' + err);
-    });
+      .then((res) => {
+        this.alertService.triggerAlert('success', 'Verification email sent. Please check your inbox!');
+      })
+      .catch((err) => {
+        this.alertService.triggerAlert('warning', 'Oh snap! Something went wrong, the email could not be sent. Error: ' + err);
+      });
   }
 
   updateUserProfile(profile, uid) {
     const userProfileRef: AngularFirestoreDocument<UserProfile> = this.db.collection('profiles').doc(uid);
     userProfileRef.update(profile)
-    .then(() => {
-      this.alertService.triggerAlert('success', 'Profile updated successfully!');
-    })
-    .catch((err) => {
-      this.alertService.triggerAlert('warning', 'Something went wrong while updating your profile.');
-    });
-  }
-
-  getMessagesCurrentUser() {
-    const query = this.db.collection('messages', ref => ref.where('authorId', '==', this.userData.uid));
-
-    console.log(query);
+      .then(() => {
+        // Get the whole profile again to save it in localStorage
+        userProfileRef.get().subscribe((obs) => {
+          localStorage.setItem('profile', JSON.stringify(obs.data()));
+          this.alertService.triggerAlert('success', 'Profile updated successfully!');
+        });
+      })
+      .catch((err) => {
+        this.alertService.triggerAlert('warning', 'Something went wrong while updating your profile.');
+      });
   }
 
   getEmailVerified(): boolean {
@@ -195,8 +196,44 @@ export class AuthService {
     return user.uid;
   }
 
-  getName() {
+  getName(): string {
     return JSON.parse(localStorage.getItem('user')).displayName;
+  }
+
+  isAnon(uid: string) {
+    // switch (uid) {
+    //   case null:
+    //   case undefined:
+    //     return false;
+    //   case this.getUid(): // No f*s given if the user see's his own name, right?
+    //     return false;
+    //   default:
+    //     this.db.collection('profile').doc(uid)
+    //       .snapshotChanges()
+    //       .pipe(
+    //         map(res => {
+    //           const profile: UserProfile = res.payload.data();
+    //           console.log(profile);
+    //           return profile.settings.anonymous;
+    //         })
+    //       );
+    // }
+    return false;
+  }
+
+  getMessagesCurrentUser(uid: string) {
+    return this.db.collection('messages', ref => ref.orderBy('timestamp', 'desc')
+      .where('authorId', '==', uid))
+      .snapshotChanges()
+      .pipe(
+        map(res => {
+          return res.map(r => {
+            const data = r.payload.doc.data() as ChatMessage;
+            const id = r.payload.doc.id;
+            return { id, data };
+          });
+        })
+      );
   }
 
   logout() {
