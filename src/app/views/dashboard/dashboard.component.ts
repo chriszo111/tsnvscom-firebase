@@ -22,6 +22,7 @@ export class DashboardComponent implements OnInit {
   displayName: Observable<string>;
   public files: UploadFile[] = [];
   userProfile: UserProfile;
+  public userMessages: any;
 
   constructor(public authService: AuthService,
               private alertService: AlertService,
@@ -30,6 +31,7 @@ export class DashboardComponent implements OnInit {
   async ngOnInit() {
     this.titleService.setTitle('Dashboard - Tensation Virtual Services - tsnvs.com');
     this.userProfile = JSON.parse(localStorage.getItem('profile'));
+    this.userMessages = this.authService.getMessagesCurrentUser(this.authService.getUid());
   }
 
   updateUserProfile() {
