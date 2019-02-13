@@ -40,7 +40,7 @@
     "jquery": "^3.3.1",
     "ng-animate": "^0.3.4",
     "ng-sidebar": "^8.0.0",
-    "ngx-file-drop": "5.0.3",
+    "ngx-file-drop": "5.0.5",
     "ngx-gravatar": "7.2.1",
     "popper": "^1.0.1",
     "rxjs": "6.4.0",
