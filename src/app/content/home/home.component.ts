@@ -49,13 +49,14 @@ export class HomeComponent implements OnInit {
         res.docs.forEach((el) => {
           this.figures.push({
             img: {
-              src: `https://picsum.photos/${this.innerWidth}/${this.innerHeight}?image=${el.data().img.picsumId}`,
-              alt: el.data().img.alt
+              src: el.data().img.src ? el.data().img.src : `https://picsum.photos/${this.innerWidth}/${this.innerHeight}?image=${el.data().img.picsumId}`,
+              alt: el.data().img.alt ? el.data().img.alt : null,
+              picsumId: el.data().img.picsumId ? el.data().img.picsumId : null
             },
             icon: {
-              name: el.data().icon.name,
-              prefix: el.data().icon.prefix,
-              size: el.data().icon.size
+              name: el.data().icon.name ? el.data().icon.name : null,
+              prefix: el.data().icon.prefix ? el.data().icon.prefix : null,
+              size: el.data().icon.size ? el.data().icon.size : null
             },
             title: el.data().title,
             caption: el.data().caption,
