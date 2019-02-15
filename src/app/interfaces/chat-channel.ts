@@ -1,4 +1,4 @@
-export interface ChatChannel {
+export interface IChatChannel {
     icon: {
       prefix: string;
       name: string;

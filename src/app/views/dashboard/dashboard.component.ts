@@ -4,7 +4,7 @@ import { Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
 import { UploadEvent, UploadFile, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
 import { AlertService } from 'src/app/services/alert.service';
-import { UserProfile } from 'src/app/interfaces/user-profile';
+import { IUserProfile } from 'src/app/interfaces/user-profile';
 
 interface Badge {
   type: string;
@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
 
   displayName: Observable<string>;
   public files: UploadFile[] = [];
-  userProfile: UserProfile;
+  userProfile: IUserProfile;
   public userMessages: any;
 
   constructor(public authService: AuthService,

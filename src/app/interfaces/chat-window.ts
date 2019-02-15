@@ -1,6 +1,6 @@
-import { ChatChannel } from './chat-channel';
+import { IChatChannel } from './chat-channel';
 
-export interface ChatWindow {
+export interface IChatWindow {
   visible: boolean;
   button: {
     text: string;
@@ -11,5 +11,5 @@ export interface ChatWindow {
   };
   height: number;
   closeButtonVisible: boolean;
-  channel: ChatChannel;
+  channel: IChatChannel;
 }

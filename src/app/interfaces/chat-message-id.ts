@@ -1,3 +1,3 @@
-export interface ChatMessageId {
+export interface IChatMessageId {
     id: string;
 }
