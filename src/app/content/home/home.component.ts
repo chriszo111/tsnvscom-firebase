@@ -4,6 +4,9 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { trigger, transition, useAnimation } from '@angular/animations';
 import { bounce, fadeIn } from 'ng-animate';
 import { AppComponent } from 'src/app/app.component';
+import { IFigures } from 'src/app/interfaces/home-figures';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import * as firebase from 'firebase/app';
 
 @Component({
   selector: 'app-home',
@@ -18,14 +21,16 @@ import { AppComponent } from 'src/app/app.component';
 })
 export class HomeComponent implements OnInit {
 
-  figures: any = [];
+  figures: IFigures[] = [];
+  dbFigures: AngularFirestoreCollection;
   fadeIn: any;
   public innerWidth: any;
   public innerHeight: any;
 
   constructor(private titleService: Title,
               private ngbCarouselConfig: NgbCarouselConfig,
-              public appComponent: AppComponent) {
+              public appComponent: AppComponent,
+              private db: AngularFirestore) {
                 ngbCarouselConfig.showNavigationArrows = false;
                 ngbCarouselConfig.interval = 15000;
               }
@@ -39,53 +44,32 @@ export class HomeComponent implements OnInit {
     this.innerWidth = window.innerWidth;
     this.innerHeight = window.innerHeight;
 
-    this.createFigures();
+    this.getFiguresFromDb()
+      .then((res) => {
+        res.docs.forEach((el) => {
+          this.figures.push({
+            img: {
+              src: `https://picsum.photos/${this.innerWidth}/${this.innerHeight}?image=${el.data().img.picsumId}`,
+              alt: el.data().img.alt
+            },
+            icon: {
+              name: el.data().icon.name,
+              prefix: el.data().icon.prefix,
+              size: el.data().icon.size
+            },
+            title: el.data().title,
+            caption: el.data().caption,
+            lastUpdate: new Date(el.data().lastUpdate)
+          });
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   }
 
-  createFigures() {
-    this.figures.push({
-      img: {
-        src: 'https://picsum.photos/' + this.innerWidth + '/' + this.innerHeight + '?image=777',
-        alt: 'Teamspeak, Ventrilo? No problem for us!'
-      },
-      icon: {
-        name: 'headset',
-        prefix: 'fas',
-        size: 'lg'
-      },
-      title: 'Free Voice!',
-      caption: 'Feel free to apply for a premium voice server. We use highest bandwidth for minumum delay!',
-      lastUpdate: '2018-10-18 15:20'
-    });
-
-    this.figures.push({
-      img: {
-        src: 'https://picsum.photos/' + this.innerWidth + '/' + this.innerHeight + '?image=904',
-        alt: 'We offer you a range of quality gaming servers. Fun or Training? You decide!'
-      },
-      icon: {
-        name: 'gamepad',
-        prefix: 'fas',
-        size: 'lg'
-      },
-      title: 'Free Gaming!',
-      caption: 'Feel free to apply for a premium gaming server. We use highest bandwidth and hardware for minumum delays!',
-      lastUpdate: '2018-10-18 14:10'
-    });
-
-    this.figures.push({
-      img: {
-        src: 'https://picsum.photos/' + this.innerWidth + '/' + this.innerHeight + '?image=1078',
-        alt: 'High-quality web servers with minimum response time, modern technologies and maximum success!'
-      },
-      icon: {
-        name: 'server',
-        prefix: 'fas',
-        size: 'lg'
-      },
-      title: 'Free Hosting!',
-      caption: 'Feel free to apply for a premium gaming server. We use highest bandwidth and hardware for minumum delays!',
-      lastUpdate: '2018-10-18 12:20'
-    });
+  async getFiguresFromDb(): Promise<any> {
+    const figuresCollectionRef = await firebase.firestore().collection('figures');
+    return figuresCollectionRef.get();
   }
 }
