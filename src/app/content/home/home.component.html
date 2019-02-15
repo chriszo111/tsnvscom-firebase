@@ -7,10 +7,10 @@
               <img [src]="figure.img.src" alt="figure.img.alt" [@fadeIn]="fadeIn">
               <div class="carousel-caption">
                 <h1 [@fadeIn]="fadeIn">
-                    <fa-icon [icon]="[figure.icon.prefix, figure.icon.name]" animation="pulse"></fa-icon> 
+                    <fa-icon *ngIf="figure.icon.name !== null" [icon]="[figure.icon.prefix, figure.icon.name]" animation="pulse"></fa-icon><br/>
                     {{figure.title}}
                 </h1>
-                <p [@fadeIn]="fadeIn">{{figure.caption}} <fa-icon [icon]="['fas','arrow-down']"></fa-icon></p>
+                <p [@fadeIn]="fadeIn">{{figure.caption}}</p>
               </div>
             </ng-template>
     </ngb-carousel>
