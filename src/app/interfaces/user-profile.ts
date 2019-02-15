@@ -1,4 +1,4 @@
-export interface UserProfile {
+export interface IUserProfile {
     steamID64?: string;
     address?: {
         street?: string;

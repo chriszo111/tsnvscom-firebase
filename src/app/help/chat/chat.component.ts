@@ -5,8 +5,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { trigger, transition, useAnimation } from '@angular/animations';
 import { fadeOutDown, fadeInUp } from 'ng-animate';
 import { AlertService } from 'src/app/services/alert.service';
-import { ChatWindow } from 'src/app/interfaces/chat-window';
-import { ChatMessage } from 'src/app/interfaces/chat-message';
+import { IChatWindow } from 'src/app/interfaces/chat-window';
+import { IChatMessage } from 'src/app/interfaces/chat-message';
 import { ChatService } from 'src/app/services/chat.service';
 
 @Component({
@@ -24,10 +24,10 @@ import { ChatService } from 'src/app/services/chat.service';
 })
 export class ChatComponent implements OnInit {
 
-  chat: ChatWindow;
+  chat: IChatWindow;
 
   messages: any;
-  message: Observable<ChatMessage>;
+  message: Observable<IChatMessage>;
 
   text: string;
 

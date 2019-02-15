@@ -5,9 +5,9 @@ import { map } from 'rxjs/operators';
 import { v1 } from 'uuid';
 import { AuthService } from 'src/app/services/auth.service';
 import { AlertService } from './alert.service';
-import { ChatWindow } from '../interfaces/chat-window';
-import { ChatMessage } from '../interfaces/chat-message';
-import { ChatChannel } from '../interfaces/chat-channel';
+import { IChatWindow } from '../interfaces/chat-window';
+import { IChatMessage } from '../interfaces/chat-message';
+import { IChatChannel } from '../interfaces/chat-channel';
 
 
 
@@ -16,13 +16,13 @@ import { ChatChannel } from '../interfaces/chat-channel';
 })
 export class ChatService {
 
-  chat: ChatWindow;
+  chat: IChatWindow;
 
-  messagesRef: AngularFirestoreCollection<ChatMessage>;
+  messagesRef: AngularFirestoreCollection<IChatMessage>;
   messages: any;
-  channel: ChatChannel;
-  messageDoc: AngularFirestoreDocument<ChatMessage>;
-  message: Observable<ChatMessage>;
+  channel: IChatChannel;
+  messageDoc: AngularFirestoreDocument<IChatMessage>;
+  message: Observable<IChatMessage>;
 
   title: string;
   text: string;
@@ -72,7 +72,7 @@ export class ChatService {
       .pipe(
         map(res => {
           return res.map(r => {
-            const data = r.payload.doc.data() as ChatMessage;
+            const data = r.payload.doc.data() as IChatMessage;
             const id = r.payload.doc.id;
             return { id, data };
           });

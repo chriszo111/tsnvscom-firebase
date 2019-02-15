@@ -7,8 +7,8 @@ import { HttpClient } from '@angular/common/http';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { User } from '../interfaces/user';
 import { map } from 'rxjs/operators';
-import { UserProfile } from '../interfaces/user-profile';
-import { ChatMessage } from '../interfaces/chat-message';
+import { IUserProfile } from '../interfaces/user-profile';
+import { IChatMessage } from '../interfaces/chat-message';
 import { isNullOrUndefined } from 'util';
 
 @Injectable()
@@ -128,7 +128,7 @@ export class AuthService {
 
   setUserProfile(user) {
     const userProfileCol: AngularFirestoreCollection = this.db.collection('profiles');
-    const userProfileRef: AngularFirestoreDocument<UserProfile> = userProfileCol.doc(user.uid);
+    const userProfileRef: AngularFirestoreDocument<IUserProfile> = userProfileCol.doc(user.uid);
 
     userProfileRef.ref.get()
       .then((doc) => {
@@ -172,7 +172,7 @@ export class AuthService {
   }
 
   updateUserProfile(profile, uid) {
-    const userProfileRef: AngularFirestoreDocument<UserProfile> = this.db.collection('profiles').doc(uid);
+    const userProfileRef: AngularFirestoreDocument<IUserProfile> = this.db.collection('profiles').doc(uid);
     userProfileRef.update(profile)
       .then(() => {
         // Get the whole profile again to save it in localStorage
@@ -228,7 +228,7 @@ export class AuthService {
       .pipe(
         map(res => {
           return res.map(r => {
-            const data = r.payload.doc.data() as ChatMessage;
+            const data = r.payload.doc.data() as IChatMessage;
             const id = r.payload.doc.id;
             return { id, data };
           });
