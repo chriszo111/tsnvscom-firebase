@@ -11,8 +11,7 @@
           <hr>
           <small>
             - 
-            <em *ngIf="authService.isAnon(message.data.authorId)">anonymous</em>
-            <em *ngIf="!authService.isAnon(message.data.authorId)">{{message.data.author}}</em>
+            <em>{{message.data.author}}</em>
             , {{message.data.timestamp | timeAgo}}
           </small>
         </li>

@@ -8,6 +8,7 @@ import { AlertService } from './alert.service';
 import { IChatWindow } from '../interfaces/chat-window';
 import { IChatMessage } from '../interfaces/chat-message';
 import { IChatChannel } from '../interfaces/chat-channel';
+import { IUserProfile } from '../interfaces/user-profile';
 
 
 
@@ -111,7 +112,7 @@ export class ChatService {
     this.db.collection('messages').doc('msg-' + v1()).set({
       'timestamp': + new Date(), // https://stackoverflow.com/questions/221294/how-do-you-get-a-timestamp-in-javascript
       'text': text,
-      'author': this.authService.getName(),
+      'author': this.authService.getDisplayName(),
       'authorId': this.authService.getUid()
     })
     .catch((err) => {

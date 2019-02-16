@@ -5,11 +5,12 @@ import { auth } from 'firebase/app';
 import { AlertService } from './alert.service';
 import { HttpClient } from '@angular/common/http';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { User } from '../interfaces/user';
+import { IUser } from '../interfaces/user';
 import { map } from 'rxjs/operators';
 import { IUserProfile } from '../interfaces/user-profile';
 import { IChatMessage } from '../interfaces/chat-message';
 import { isNullOrUndefined } from 'util';
+import * as firebase from 'firebase/app'
 
 @Injectable()
 export class AuthService {
@@ -111,7 +112,7 @@ export class AuthService {
   setUserData(user) {
     const userRef: AngularFirestoreDocument<any> = this.db.doc(`users/${user.uid}`);
 
-    const userData: User = {
+    const userData: IUser = {
       uid: user.uid,
       displayName: user.displayName,
       photoURL: user.photoURL,
@@ -197,27 +198,35 @@ export class AuthService {
   }
 
   getName(): string {
-    return JSON.parse(localStorage.getItem('user')).displayName;
+    const user = JSON.parse(localStorage.getItem('user')) as IUser;
+    return user.displayName;
   }
 
-  isAnon(uid: string) {
-    // switch (uid) {
-    //   case null:
-    //   case undefined:
-    //     return false;
-    //   case this.getUid(): // No f*s given if the user see's his own name, right?
-    //     return false;
-    //   default:
-    //     this.db.collection('profile').doc(uid)
-    //       .snapshotChanges()
-    //       .pipe(
-    //         map(res => {
-    //           const profile: UserProfile = res.payload.data();
-    //           console.log(profile);
-    //           return profile.settings.anonymous;
-    //         })
-    //       );
-    // }
+  getDisplayName(): string {
+    const anonymous: boolean = (JSON.parse(localStorage.getItem('profile')) as IUserProfile).settings.anonymous;
+
+    if (anonymous) {
+      return 'anonymous';
+    } else {
+      return this.getName();
+    }
+  }
+
+  getAnonymousStatus(uid: string): boolean {
+    firebase.firestore().collection('profile').doc(uid).get().then((res) => {
+      const profile = res.data() as IUserProfile;
+      return profile.settings.anonymous as boolean;
+    })
+    .catch((err) => {
+      this.alertService.triggerAlert(
+        'warning',
+        `Could not check anonymous status.\n <strong>Error</strong>: ${err}`,
+        true
+      );
+
+      return false;
+    });
+
     return false;
   }
 
