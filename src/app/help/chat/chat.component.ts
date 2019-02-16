@@ -73,7 +73,7 @@ export class ChatComponent implements OnInit {
     }
   }
 
-  getMessage(messageId) {
+  getMessage(messageId: string) {
     this.message = this.chatService.getMessage(messageId);
 
     if (this.message === null) {
