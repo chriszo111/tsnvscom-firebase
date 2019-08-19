@@ -3,7 +3,7 @@ import { AuthService } from '../services/auth.service';
 import { AlertService } from '../services/alert.service';
 import { Router } from '@angular/router';
 import { faFacebook } from '@fortawesome/free-brands-svg-icons';
-import { SwalPartialTargets } from '@toverux/ngx-sweetalert2';
+import { SwalPartialTargets } from '@sweetalert2/ngx-sweetalert2';
 import { AppComponent } from '../app.component';
 import { Sidebar } from 'ng-sidebar';
 
