@@ -29,7 +29,10 @@
     "@fortawesome/free-regular-svg-icons": "5.7.2",
     "@fortawesome/free-solid-svg-icons": "5.7.2",
     "@ng-bootstrap/ng-bootstrap": "4.0.3",
+<<<<<<< HEAD
     "@sweetalert2/ngx-sweetalert2": "^5.1.0",
+=======
+>>>>>>> baae694482c9e214e1edde5279ce2ee16648a2d9
     "@types/rx": "^4.1.1",
     "@types/uuid": "^3.4.4",
     "bootstrap": "^4.3.1",
@@ -60,7 +63,11 @@
     "@types/jasmine": "3.3.9",
     "@types/jasminewd2": "^2.0.6",
     "@types/node": "11.9.4",
+<<<<<<< HEAD
     "codelyzer": "^5.1.0",
+=======
+    "codelyzer": "^4.5.0",
+>>>>>>> baae694482c9e214e1edde5279ce2ee16648a2d9
     "coveralls": "^3.0.2",
     "jasmine-core": "~3.3.0",
     "jasmine-spec-reporter": "~4.2.1",
