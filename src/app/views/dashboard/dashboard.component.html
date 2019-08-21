@@ -3,10 +3,10 @@
   <div class="col-md-2 offset-md-2">
     <div class="col-md-12 profile-sm" *ngIf="authService.userData as user">
       <h4 class="text-center">{{user.displayName}}</h4>
-      <file-drop customstyle="file-drop-custom" (onFileDrop)="dropped($event)" (onFileOver)="fileOver($event)"
+      <ngx-file-drop customstyle="file-drop-custom" (onFileDrop)="dropped($event)" (onFileOver)="fileOver($event)"
         (onFileLeave)="fileLeave($event)">
         <img ngxGravatar [email]="user.email" [src]="user.photoURL" [preferGravatar]="userProfile.settings.preferGravatar">
-      </file-drop>
+      </ngx-file-drop>
     </div>
 
     <nav class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">

@@ -25,10 +25,10 @@ import { faTimes, faGlobe, faGamepad, faServer, faHeadset,
          faBars, faAngleDoubleLeft, faSync, faArrowAltCircleLeft } from '@fortawesome/free-solid-svg-icons';
 import { faTwitter, faTwitch, faTeamspeak, faSteam, faFacebook, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { TimeAgoPipe } from 'time-ago-pipe';
-import { FileDropModule } from 'ngx-file-drop';
+import { NgxFileDropModule } from 'ngx-file-drop';
 import { GravatarModule } from 'ngx-gravatar';
 import { gravatarConfig } from './configs/gravatar.conf';
-import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { SidebarModule } from 'ng-sidebar';
 
 import { AppNavbarComponent } from './app-navbar/app-navbar.component';
@@ -87,7 +87,7 @@ library.add(faFacebook, faTeamspeak, faTwitch, faTwitter, faSteam, faGithub);
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    FileDropModule,
+    NgxFileDropModule,
     GravatarModule.forRoot(gravatarConfig),
     SweetAlert2Module.forRoot({
       buttonsStyling: false,

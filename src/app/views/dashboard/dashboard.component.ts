@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Title } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
-import { UploadEvent, UploadFile, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
+import { NgxFileDropEntry, FileSystemFileEntry, FileSystemDirectoryEntry } from 'ngx-file-drop';
 import { AlertService } from 'src/app/services/alert.service';
 import { IUserProfile } from 'src/app/interfaces/user-profile';
 
@@ -20,7 +20,7 @@ interface Badge {
 export class DashboardComponent implements OnInit {
 
   displayName: Observable<string>;
-  public files: UploadFile[] = [];
+  public files: NgxFileDropEntry[] = [];
   userProfile: IUserProfile;
   public userMessages: any;
 
@@ -66,9 +66,9 @@ export class DashboardComponent implements OnInit {
     this.authService.sendVerificationEmail();
   }
 
-  public dropped(event: UploadEvent) {
-    this.files = event.files;
-    for (const droppedFile of event.files) {
+  public dropped(files: NgxFileDropEntry[]) {
+    this.files = files;
+    for (const droppedFile of files) {
 
       // Is it a file?
       if (droppedFile.fileEntry.isFile) {
