@@ -1,0 +1,22 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.13.5
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  SNYK-JS-LODASH-450202:
+    - popper > wd > lodash:
+        patched: '2019-08-19T19:11:30.601Z'
+    - popper > wd > archiver > lodash:
+        patched: '2019-08-19T19:11:30.601Z'
+    - popper > wd > async > lodash:
+        patched: '2019-08-19T19:11:30.601Z'
+    - popper > ngrok > request-promise-native > request-promise-core > lodash:
+        patched: '2019-08-19T19:11:30.601Z'
+    - popper > wd > archiver > archiver-utils > lodash:
+        patched: '2019-08-19T19:11:30.601Z'
+    - popper > wd > archiver > async > lodash:
+        patched: '2019-08-19T19:11:30.601Z'
+    - popper > wd > archiver > zip-stream > lodash:
+        patched: '2019-08-19T19:11:30.601Z'
+    - popper > wd > archiver > zip-stream > archiver-utils > lodash:
+        patched: '2019-08-19T19:11:30.601Z'
