@@ -47,7 +47,7 @@
     "ngx-gravatar": "7.2.2",
     "ngx-sweetalert2": "^0.2.7",
     "popper": "^1.0.1",
-    "rxjs": "6.5.2",
+    "rxjs": "6.5.3",
     "rxjs-compat": "6.4.0",
     "snyk": "^1.217.1",
     "sweetalert2": "^8.8.1",
