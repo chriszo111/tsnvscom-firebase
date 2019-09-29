@@ -29,7 +29,7 @@
     "@fortawesome/fontawesome-svg-core": "1.2.25",
     "@fortawesome/free-brands-svg-icons": "5.8.0",
     "@fortawesome/free-regular-svg-icons": "5.11.2",
-    "@fortawesome/free-solid-svg-icons": "5.8.0",
+    "@fortawesome/free-solid-svg-icons": "5.11.2",
     "@ng-bootstrap/ng-bootstrap": "4.0.5",
     "@toverux/ngx-sweetalert2": "^4.0.0",
     "@types/rx": "^4.1.1",
