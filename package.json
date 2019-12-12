@@ -43,7 +43,7 @@
     "ng-animate": "^0.3.4",
     "ng-sidebar": "^9.0.0",
     "ngx-file-drop": "5.0.6",
-    "ngx-gravatar": "7.2.2",
+    "ngx-gravatar": "8.1.0",
     "popper": "^1.0.1",
     "rxjs": "6.4.0",
     "rxjs-compat": "6.4.0",
