@@ -1,0 +1,49 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.13.5
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  SNYK-JS-HTTPSPROXYAGENT-469131:
+    - firebase-admin > @google-cloud/storage > @google-cloud/common > google-auth-library > gcp-metadata > gaxios > https-proxy-agent:
+        patched: '2019-10-17T00:13:59.777Z'
+    - firebase-admin > @google-cloud/storage > teeny-request > https-proxy-agent:
+        patched: '2019-10-17T00:13:59.777Z'
+    - firebase-admin > @google-cloud/storage > @google-cloud/common > google-auth-library > gaxios > https-proxy-agent:
+        patched: '2019-10-17T00:13:59.777Z'
+    - firebase-admin > @google-cloud/firestore > google-gax > google-auth-library > gaxios > https-proxy-agent:
+        patched: '2019-10-17T00:13:59.777Z'
+    - firebase-admin > @google-cloud/storage > gcs-resumable-upload > google-auth-library > gaxios > https-proxy-agent:
+        patched: '2019-10-17T00:13:59.777Z'
+    - firebase-admin > @google-cloud/storage > gcs-resumable-upload > gaxios > https-proxy-agent:
+        patched: '2019-10-17T00:13:59.777Z'
+    - firebase-admin > @google-cloud/storage > gcs-resumable-upload > google-auth-library > gtoken > gaxios > https-proxy-agent:
+        patched: '2019-10-17T00:13:59.777Z'
+    - firebase-admin > @google-cloud/storage > @google-cloud/common > google-auth-library > gtoken > gaxios > https-proxy-agent:
+        patched: '2019-10-17T00:13:59.777Z'
+    - firebase-admin > @google-cloud/firestore > google-gax > google-auth-library > gtoken > gaxios > https-proxy-agent:
+        patched: '2019-10-17T00:13:59.777Z'
+    - firebase-admin > @google-cloud/storage > gcs-resumable-upload > google-auth-library > gcp-metadata > gaxios > https-proxy-agent:
+        patched: '2019-10-17T00:13:59.777Z'
+    - firebase-admin > @google-cloud/firestore > google-gax > google-auth-library > gcp-metadata > gaxios > https-proxy-agent:
+        patched: '2019-10-17T00:13:59.777Z'
+    - firebase-admin > @google-cloud/storage > gaxios > https-proxy-agent:
+        patched: '2019-10-28T18:58:27.384Z'
+  SNYK-JS-LODASH-450202:
+    - snyk > @snyk/dep-graph > lodash:
+        patched: '2019-10-28T18:58:27.384Z'
+    - snyk > @snyk/dep-graph > graphlib > lodash:
+        patched: '2019-10-28T18:58:27.384Z'
+    - snyk > snyk-go-plugin > graphlib > lodash:
+        patched: '2019-10-28T18:58:27.384Z'
+    - snyk > snyk-nodejs-lockfile-parser > graphlib > lodash:
+        patched: '2019-10-28T18:58:27.384Z'
+    - snyk > @snyk/snyk-cocoapods-plugin > @snyk/dep-graph > lodash:
+        patched: '2019-10-28T18:58:27.384Z'
+    - snyk > snyk-nuget-plugin > dotnet-deps-parser > lodash:
+        patched: '2019-10-28T18:58:27.384Z'
+    - snyk > @snyk/snyk-cocoapods-plugin > @snyk/dep-graph > graphlib > lodash:
+        patched: '2019-10-28T18:58:27.384Z'
+    - snyk > @snyk/snyk-cocoapods-plugin > @snyk/cocoapods-lockfile-parser > @snyk/dep-graph > lodash:
+        patched: '2019-10-28T18:58:27.384Z'
+    - snyk > @snyk/snyk-cocoapods-plugin > @snyk/cocoapods-lockfile-parser > @snyk/dep-graph > graphlib > lodash:
+        patched: '2019-10-28T18:58:27.384Z'
