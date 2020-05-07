@@ -39,7 +39,7 @@
     "cryptiles": "^4.1.3",
     "firebase": "5.9.4",
     "hammerjs": "^2.0.8",
-    "jquery": "^3.4.0",
+    "jquery": "^3.5.0",
     "ng-animate": "^0.3.4",
     "ng-sidebar": "^9.0.0",
     "ngx-file-drop": "5.0.6",
@@ -51,7 +51,7 @@
     "time-ago-pipe": "^1.3.2",
     "uuid": "^3.3.2",
     "zone.js": "0.8.29",
-    "snyk": "^1.239.3"
+    "snyk": "^1.319.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "0.13.7",
