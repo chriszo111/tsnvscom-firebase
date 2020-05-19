@@ -33,7 +33,7 @@
     "@ng-bootstrap/ng-bootstrap": "4.0.5",
     "@toverux/ngx-sweetalert2": "^4.0.0",
     "@types/rx": "^4.1.1",
-    "@types/uuid": "^3.4.4",
+    "@types/uuid": "^8.0.0",
     "bootstrap": "^4.3.1",
     "core-js": "3.0.1",
     "cryptiles": "^4.1.3",
